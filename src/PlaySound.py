@@ -5,7 +5,7 @@ import vlc
 
 
 def play_sound(message):
-    print(message)
+    #print(message)
     if "steal" in message or "steel" in message:
         p = vlc.MediaPlayer("../Sounds/metalpipe.mp3")
         p.play()
