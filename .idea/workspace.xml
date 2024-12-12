@@ -4,10 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Hopefully fixed my issue of breaking everything lol.">
-      <change afterPath="$PROJECT_DIR$/Sounds/door.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/mario.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/rolling.mp3" afterDir="false" />
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added a few more sounds.">
+      <change afterPath="$PROJECT_DIR$/Sounds/bad.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/boowomp.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/bored.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/bruh.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/car.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/dance.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/erm.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/fnaf1.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/fnaf2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/fnaf3.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/fnaf4.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/fnaf5.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/fnaf6.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/fnafj.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/fnafs.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/gamblinglose.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/gamblingwin.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/garnular.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/happy.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/hellnaw.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/hello.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/hello2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/lego.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/onepiece.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/pog.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/sad.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/scary.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/shutdown.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
     </list>
@@ -35,16 +60,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.GrabChat.executor": "Run",
-    "Python.PlaySound.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/pines/PycharmProjects/WordsToSounds/Sounds"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.GrabChat.executor&quot;: &quot;Run&quot;,
+    &quot;Python.PlaySound.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/pines/PycharmProjects/WordsToSounds/Sounds&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Sounds" />
@@ -94,13 +119,33 @@
       <option name="project" value="LOCAL" />
       <updated>1733962272854</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added a few more sounds.">
+      <option name="closed" value="true" />
+      <created>1733967219898</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733967219898</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created a small project I will update so that when people say certain words during my stream a sound will play!" />
     <MESSAGE value="Commented out test line." />
     <MESSAGE value="Hopefully fixed my issue of breaking everything lol." />
-    <option name="LAST_COMMIT_MESSAGE" value="Hopefully fixed my issue of breaking everything lol." />
+    <MESSAGE value="Added a few more sounds." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a few more sounds." />
   </component>
 </project>
