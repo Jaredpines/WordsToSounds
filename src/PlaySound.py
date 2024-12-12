@@ -44,6 +44,19 @@ def play_sound(message):
         p = vlc.MediaPlayer("../Sounds/yippee.mp3")
         p.play()
 
+    if "door" in message:
+        p = vlc.MediaPlayer("../Sounds/door.mp3")
+        p.play()
+
+    if "gamese39mariodisapproves" in message:
+        p = vlc.MediaPlayer("../Sounds/mario.mp3")
+        p.play()
+
+    if "gamese39rollinggiant" in message or "gamese39rg" in message:
+        p = vlc.MediaPlayer("../Sounds/rolling.mp3")
+        p.play()
+
+
 
 bot = Bot(callback=play_sound)
 bot.run()
