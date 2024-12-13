@@ -1,17 +1,14 @@
+
 import random
 import re
-from src.GrabChat import Bot, get_live_chat_id, get_chat_messages, authenticate
 import vlc
-import time
-import os
-from google.oauth2.credentials import Credentials
-from googleapiclient.discovery import build
+
 
 POLLING_INTERVAL = 5
 
 
 def play_sound(message):
-    # print(message)
+    message = message.lower()
     if "steal" in message or "steel" in message:
         p = vlc.MediaPlayer("../Sounds/metalpipe.mp3")
         p.play()
@@ -177,21 +174,4 @@ def play_sound(message):
         p.play()
 
 
-def main():
-    bot = Bot(callback=play_sound)
-    bot.run()
-    api = authenticate()
 
-    live_chat_id = get_live_chat_id(api)
-    if not live_chat_id:
-        return
-
-    print("Connected to live chat!")
-
-    next_page_token = None
-    while True:
-        next_page_token = get_chat_messages(api, live_chat_id, play_sound, next_page_token)
-        time.sleep(5)
-
-
-main()
