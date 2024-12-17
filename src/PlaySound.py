@@ -2,13 +2,43 @@
 import random
 import re
 import vlc
-
+from googletrans import Translator
 
 POLLING_INTERVAL = 5
+translator = Translator()
+excluded_names = {"Tio", "Gio"}
+
+
+def translate_to_english(text):
+    placeholder_map = {}
+    words = text.split()
+    for i, word in enumerate(words):
+        clean_word = word.strip("!,.?")  # Remove punctuation for matching
+        if clean_word.capitalize() in excluded_names:
+            placeholder = f"__name_{i}__"
+            placeholder_map[placeholder] = word
+            words[i] = placeholder
+
+    text_with_placeholders = " ".join(words)
+    detected_lang = translator.detect(text_with_placeholders).lang
+
+    if detected_lang != "en":
+        translated_text = translator.translate(text_with_placeholders, dest="en").text
+    else:
+        translated_text = text_with_placeholders
+
+    for placeholder, original_name in placeholder_map.items():
+        print(placeholder)
+        print(original_name)
+        translated_text = translated_text.replace(placeholder, original_name)
+
+    return translated_text
 
 
 def play_sound(message):
+    message = translate_to_english(message)
     message = message.lower()
+    print(message)
     if "steal" in message or "steel" in message:
         p = vlc.MediaPlayer("../Sounds/metalpipe.mp3")
         p.play()
@@ -173,5 +203,11 @@ def play_sound(message):
         p = vlc.MediaPlayer("../Sounds/hello2.mp3")
         p.play()
 
+    if "bye tio" in message:
+        p = vlc.MediaPlayer("../Sounds/seeya.mp3")
+        p.play()
 
+    if "bye gio" in message:
+        p = vlc.MediaPlayer("../Sounds/byeosu.mp3")
+        p.play()
 

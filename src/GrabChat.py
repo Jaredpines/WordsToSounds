@@ -15,7 +15,6 @@ POLLING_INTERVAL = 5
 SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]
 
 
-
 # Twitch bot setup
 class TwitchBot(commands.Bot):
     load_dotenv()
