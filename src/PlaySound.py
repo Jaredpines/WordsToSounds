@@ -1,15 +1,19 @@
-
+import threading
 import random
 import re
 import vlc
 from googletrans import Translator
+from PIL import Image, ImageTk
+import tkinter as tk
+import time
 
 POLLING_INTERVAL = 5
 translator = Translator()
 excluded_names = {"Tio", "Gio"}
+p = vlc.MediaPlayer("../Sounds/metalpipe.mp3")
 
 
-def translate_to_english(text):
+def translateToEnglish(text):
     placeholder_map = {}
     words = text.split()
     for i, word in enumerate(words):
@@ -36,7 +40,8 @@ def translate_to_english(text):
 
 
 def play_sound(message):
-    message = translate_to_english(message)
+    global p
+    #message = translateToEnglish(message)
     message = message.lower()
     print(message)
     if "steal" in message or "steel" in message:
@@ -72,7 +77,10 @@ def play_sound(message):
             p = vlc.MediaPlayer("../Sounds/pikminpluck.mp3")
         elif rand == 4:
             p = vlc.MediaPlayer("../Sounds/pikminthrow.mp3")
-        p.play()
+
+        multipleTriggers("../Images/pikminy.gif", duration=2)
+
+
 
     if "gamese39yippee" in message or "yippee" in message:
         p = vlc.MediaPlayer("../Sounds/yippee.mp3")
@@ -205,9 +213,65 @@ def play_sound(message):
 
     if "bye tio" in message:
         p = vlc.MediaPlayer("../Sounds/seeya.mp3")
-        p.play()
+        #multipleTriggers("../Images/moist.png", duration=2)
 
     if "bye gio" in message:
         p = vlc.MediaPlayer("../Sounds/byeosu.mp3")
         p.play()
 
+    if "christmas" in message:
+        p = vlc.MediaPlayer("../Sounds/christmas.mp3")
+        multipleTriggers("../Images/christmas.gif", duration=19)
+        p.play()
+
+
+def flashImage(imagePath, duration=3):
+    global p
+    root = tk.Tk()
+    root.withdraw()
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
+    image = Image.open(imagePath)
+    imageWidth, imageHeight = image.size
+
+    xPos = random.randint(0, screen_width - imageWidth)
+    yPos = random.randint(0, screen_height - imageHeight)
+
+    popup = tk.Toplevel(root)
+    popup.attributes('-topmost', True)
+    popup.geometry(f"{imageWidth}x{imageHeight}+{xPos}+{yPos}")
+    popup.overrideredirect(True)
+    popup.attributes('-transparentcolor', 'black')
+    popup.configure(bg='black')
+    if ".gif" in imagePath:
+        frames = []
+        try:
+            while True:
+                frame = ImageTk.PhotoImage(image.copy(), master = popup)
+                frames.append(frame)
+                image.seek(len(frames))  # Move to next frame
+        except EOFError:
+            pass
+    else:
+        img = ImageTk.PhotoImage(image, master = popup)
+    label = tk.Label(popup, bg='black')
+    label.pack(expand=True)
+
+    def update_frame(index):
+        label.config(image=frames[index])
+        popup.after(100, update_frame, (index + 1) % len(frames))
+
+    p.play()
+    if ".gif" in imagePath:
+        update_frame(0)
+    else:
+        label.image = img
+
+    popup.after(int(duration * 1000), popup.destroy)
+    root.after(int(duration * 1000), root.destroy)
+
+    root.mainloop()
+
+def multipleTriggers(imagePath, duration = 2):
+    threading.Thread(target=flashImage, args=(imagePath, duration), daemon=True).start()
