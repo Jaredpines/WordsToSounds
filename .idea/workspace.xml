@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added translation support. And 2 new sounds.">
-      <change afterPath="$PROJECT_DIR$/Images/christmas.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/moist.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/pikminy.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/christmas.mp3" afterDir="false" />
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added images and one new sound">
+      <change afterPath="$PROJECT_DIR$/Images/foxy.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GrabChat.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GrabChat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734400582565</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added images and one new sound">
+      <option name="closed" value="true" />
+      <created>1734575033016</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734575033016</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,6 +148,7 @@
     <MESSAGE value="Added a few more sounds." />
     <MESSAGE value="Added a lot more sound. First stream with this went well!" />
     <MESSAGE value="Added translation support. And 2 new sounds." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added translation support. And 2 new sounds." />
+    <MESSAGE value="Added images and one new sound" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added images and one new sound" />
   </component>
 </project>

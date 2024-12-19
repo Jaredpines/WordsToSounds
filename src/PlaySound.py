@@ -1,16 +1,18 @@
-import threading
-import random
+import asyncio
 import re
 import vlc
-from googletrans import Translator
+import threading
 from PIL import Image, ImageTk
 import tkinter as tk
-import time
+from googletrans import Translator
+import random
+
 
 POLLING_INTERVAL = 5
 translator = Translator()
 excluded_names = {"Tio", "Gio"}
 p = vlc.MediaPlayer("../Sounds/metalpipe.mp3")
+
 
 
 def translateToEnglish(text):
@@ -136,7 +138,7 @@ def play_sound(message):
             p = vlc.MediaPlayer("../Sounds/fnafs.mp3")
         elif rand == 8:
             p = vlc.MediaPlayer("../Sounds/fnafj.mp3")
-        p.play()
+        multipleTriggers("../Images/foxy.gif", duration=2)
 
     if "one piece" in message or "onepiece" in message:
         p = vlc.MediaPlayer("../Sounds/onepiece.mp3")
@@ -222,56 +224,136 @@ def play_sound(message):
     if "christmas" in message:
         p = vlc.MediaPlayer("../Sounds/christmas.mp3")
         multipleTriggers("../Images/christmas.gif", duration=19)
-        p.play()
 
 
-def flashImage(imagePath, duration=3):
-    global p
+# def flashImage(imagePath, duration=3):
+#     global p
+#     root = tk.Tk()
+#     root.withdraw()
+#     screen_width = root.winfo_screenwidth()
+#     screen_height = root.winfo_screenheight()
+#
+#     image = Image.open(imagePath)
+#     imageWidth, imageHeight = image.size
+#
+#     xPos = random.randint(0, screen_width - imageWidth)
+#     yPos = random.randint(0, screen_height - imageHeight)
+#
+#     popup = tk.Toplevel(root)
+#     popup.attributes('-topmost', True)
+#     popup.geometry(f"{imageWidth}x{imageHeight}+{xPos}+{yPos}")
+#     popup.overrideredirect(True)
+#     popup.attributes('-transparentcolor', 'black')
+#     popup.configure(bg='black')
+#     if ".gif" in imagePath:
+#         frames = []
+#         try:
+#             while True:
+#                 frame = ImageTk.PhotoImage(image.copy(), master = popup)
+#                 frames.append(frame)
+#                 image.seek(len(frames))  # Move to next frame
+#         except EOFError:
+#             pass
+#     else:
+#         img = ImageTk.PhotoImage(image, master = popup)
+#     label = tk.Label(popup, bg='black')
+#     label.pack(expand=True)
+#
+#     def update_frame(index):
+#         label.config(image=frames[index])
+#         popup.after(100, update_frame, (index + 1) % len(frames))
+#
+#     p.play()
+#     if ".gif" in imagePath:
+#         update_frame(0)
+#     else:
+#         label.image = img
+#
+#     popup.after(int(duration * 1000), popup.destroy)
+#     root.after(int(duration * 1000), root.destroy)
+#
+#     root.mainloop()
+#
+# def multipleTriggers(imagePath, duration = 2):
+#     threading.Thread(target=flashImage, args=(imagePath, duration), daemon=True).start()
+
+root = None
+images = []
+
+def setup_tkinter():
+    """Initialize the Tkinter root window."""
+    global root
     root = tk.Tk()
-    root.withdraw()
+    root.attributes('-topmost', True)
+    root.attributes('-fullscreen', True)
+    root.attributes('-transparentcolor', 'black')
+    root.configure(bg='black')
+
+def flash_image(imagePath, duration=3):
+    """Flash an image on the screen."""
+    global root, images
+    if root is None:
+        raise RuntimeError("Tkinter root is not initialized. Call setup_tkinter first.")
+
+    # Load the image
+    image = Image.open(imagePath)
+    image_width, image_height = image.size
     screen_width = root.winfo_screenwidth()
     screen_height = root.winfo_screenheight()
 
-    image = Image.open(imagePath)
-    imageWidth, imageHeight = image.size
+    # Random position on screen
+    x_pos = random.randint(0, screen_width - image_width)
+    y_pos = random.randint(0, screen_height - image_height)
 
-    xPos = random.randint(0, screen_width - imageWidth)
-    yPos = random.randint(0, screen_height - imageHeight)
+    # Create a label for the image
+    label = tk.Label(root, bg='black')
+    label.place(x=x_pos, y=y_pos)
 
-    popup = tk.Toplevel(root)
-    popup.attributes('-topmost', True)
-    popup.geometry(f"{imageWidth}x{imageHeight}+{xPos}+{yPos}")
-    popup.overrideredirect(True)
-    popup.attributes('-transparentcolor', 'black')
-    popup.configure(bg='black')
     if ".gif" in imagePath:
+        # Load frames for GIF
         frames = []
         try:
             while True:
-                frame = ImageTk.PhotoImage(image.copy(), master = popup)
-                frames.append(frame)
-                image.seek(len(frames))  # Move to next frame
+                frames.append(ImageTk.PhotoImage(image.copy(), master=root))
+                image.seek(len(frames))
         except EOFError:
             pass
-    else:
-        img = ImageTk.PhotoImage(image, master = popup)
-    label = tk.Label(popup, bg='black')
-    label.pack(expand=True)
 
-    def update_frame(index):
-        label.config(image=frames[index])
-        popup.after(100, update_frame, (index + 1) % len(frames))
+        def update_frame(index):
+            if label.winfo_exists():
+                try:
+                    label.config(image=frames[index])
+                    label.image = frames[index]  # Keep a reference to avoid garbage collection
+                    if index + 1 < len(frames):
+                        root.after(100, update_frame, index + 1)
+                    else:
+                        root.after(100, update_frame, 0)
+                except tk.TclError:
+                    pass
 
-    p.play()
-    if ".gif" in imagePath:
+        p.play()
         update_frame(0)
     else:
-        label.image = img
+        # Single frame image
+        img = ImageTk.PhotoImage(image, master=root)
+        label.config(image=img)
+        label.image = img  # Keep a reference
 
-    popup.after(int(duration * 1000), popup.destroy)
-    root.after(int(duration * 1000), root.destroy)
+    # Add the label to the active list and schedule its removal
+    images.append(label)
+    root.after(int(duration * 1000), lambda: remove_image(label))
 
+def remove_image(label):
+    """Remove an image from the screen."""
+    global images
+    if label in images and label.winfo_exists():
+        label.destroy()
+        images.remove(label)
+
+def run_tkinter():
+    """Run the Tkinter event loop in an async-compatible way."""
+    global root
+    setup_tkinter()
     root.mainloop()
-
-def multipleTriggers(imagePath, duration = 2):
-    threading.Thread(target=flashImage, args=(imagePath, duration), daemon=True).start()
+def multipleTriggers(imagePath, duration=2):
+    threading.Thread(target=flash_image, args=(imagePath, duration), daemon=True).start()

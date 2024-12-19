@@ -1,4 +1,6 @@
 import asyncio
+import threading
+
 import nest_asyncio
 from dotenv import load_dotenv
 from twitchio.ext import commands
@@ -7,9 +9,9 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 import pickle
 import os
-import time
 
-from src.PlaySound import play_sound
+from src.PlaySound import play_sound, run_tkinter, setup_tkinter
+
 nest_asyncio.apply()
 POLLING_INTERVAL = 5
 SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]
@@ -106,10 +108,13 @@ class YouTubeChatHandler:
         print("Connected to YouTube live chat!")
         await self.poll_chat()
 
+
+
 async def main():
     twitch_bot = TwitchBot(play_sound)
     youtube_handler = YouTubeChatHandler(play_sound)
-
+    setup_tkinter()
+    threading.Thread(target=run_tkinter, daemon=True).start()
     # Run both handlers concurrently
     await asyncio.gather(
         #youtube_handler.start(),
