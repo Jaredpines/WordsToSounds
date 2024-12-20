@@ -142,7 +142,7 @@ def play_sound(message):
 
     if "one piece" in message or "onepiece" in message:
         p = vlc.MediaPlayer("../Sounds/onepiece.mp3")
-        p.play()
+        multipleTriggers("../Images/onepiece.gif", duration=12)
 
     if "sorry" in message or "sowwy" in message or "gamese39sowwy" in message:
         p = vlc.MediaPlayer("../Sounds/sad.mp3")
@@ -225,57 +225,9 @@ def play_sound(message):
         p = vlc.MediaPlayer("../Sounds/christmas.mp3")
         multipleTriggers("../Images/christmas.gif", duration=19)
 
-
-# def flashImage(imagePath, duration=3):
-#     global p
-#     root = tk.Tk()
-#     root.withdraw()
-#     screen_width = root.winfo_screenwidth()
-#     screen_height = root.winfo_screenheight()
-#
-#     image = Image.open(imagePath)
-#     imageWidth, imageHeight = image.size
-#
-#     xPos = random.randint(0, screen_width - imageWidth)
-#     yPos = random.randint(0, screen_height - imageHeight)
-#
-#     popup = tk.Toplevel(root)
-#     popup.attributes('-topmost', True)
-#     popup.geometry(f"{imageWidth}x{imageHeight}+{xPos}+{yPos}")
-#     popup.overrideredirect(True)
-#     popup.attributes('-transparentcolor', 'black')
-#     popup.configure(bg='black')
-#     if ".gif" in imagePath:
-#         frames = []
-#         try:
-#             while True:
-#                 frame = ImageTk.PhotoImage(image.copy(), master = popup)
-#                 frames.append(frame)
-#                 image.seek(len(frames))  # Move to next frame
-#         except EOFError:
-#             pass
-#     else:
-#         img = ImageTk.PhotoImage(image, master = popup)
-#     label = tk.Label(popup, bg='black')
-#     label.pack(expand=True)
-#
-#     def update_frame(index):
-#         label.config(image=frames[index])
-#         popup.after(100, update_frame, (index + 1) % len(frames))
-#
-#     p.play()
-#     if ".gif" in imagePath:
-#         update_frame(0)
-#     else:
-#         label.image = img
-#
-#     popup.after(int(duration * 1000), popup.destroy)
-#     root.after(int(duration * 1000), root.destroy)
-#
-#     root.mainloop()
-#
-# def multipleTriggers(imagePath, duration = 2):
-#     threading.Thread(target=flashImage, args=(imagePath, duration), daemon=True).start()
+    if "freeze" in message:
+        p = vlc.MediaPlayer("../Sounds/freeze.mp3")
+        multipleTriggers("../Images/freeze.gif", duration=12)
 
 root = None
 images = []
