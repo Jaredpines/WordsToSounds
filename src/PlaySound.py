@@ -12,7 +12,7 @@ POLLING_INTERVAL = 5
 translator = Translator()
 excluded_names = {"Tio", "Gio"}
 p = vlc.MediaPlayer("../Sounds/metalpipe.mp3")
-
+jeff = False
 
 
 def translateToEnglish(text):
@@ -43,6 +43,7 @@ def translateToEnglish(text):
 
 def play_sound(message):
     global p
+    global jeff
     #message = translateToEnglish(message)
     message = message.lower()
     print(message)
@@ -79,7 +80,7 @@ def play_sound(message):
             p = vlc.MediaPlayer("../Sounds/pikminpluck.mp3")
         elif rand == 4:
             p = vlc.MediaPlayer("../Sounds/pikminthrow.mp3")
-
+        p.play()
         multipleTriggers("../Images/pikminy.gif", duration=2)
 
 
@@ -138,10 +139,12 @@ def play_sound(message):
             p = vlc.MediaPlayer("../Sounds/fnafs.mp3")
         elif rand == 8:
             p = vlc.MediaPlayer("../Sounds/fnafj.mp3")
-        multipleTriggers("../Images/foxy.gif", duration=2)
+        p.play()
+        multipleTriggers("../Images/foxy.gif", duration=1)
 
     if "one piece" in message or "onepiece" in message:
         p = vlc.MediaPlayer("../Sounds/onepiece.mp3")
+        p.play()
         multipleTriggers("../Images/onepiece.gif", duration=12)
 
     if "sorry" in message or "sowwy" in message or "gamese39sowwy" in message:
@@ -223,11 +226,23 @@ def play_sound(message):
 
     if "christmas" in message:
         p = vlc.MediaPlayer("../Sounds/christmas.mp3")
+        p.play()
         multipleTriggers("../Images/christmas.gif", duration=19)
 
     if "freeze" in message:
         p = vlc.MediaPlayer("../Sounds/freeze.mp3")
+        p.play()
         multipleTriggers("../Images/freeze.gif", duration=12)
+
+    if "soccer" in message:
+        p = vlc.MediaPlayer("../Sounds/soccer.mp3")
+        p.play()
+        multipleTriggers("../Images/soccer.gif", duration=12)
+    if "jeff" in message:
+        p = vlc.MediaPlayer("../Sounds/jeff.mp3")
+        multipleTriggers("../Images/jeff.gif", duration=25)
+        jeff = True
+
 
 root = None
 images = []
@@ -238,12 +253,12 @@ def setup_tkinter():
     root = tk.Tk()
     root.attributes('-topmost', True)
     root.attributes('-fullscreen', True)
-    root.attributes('-transparentcolor', 'black')
-    root.configure(bg='black')
+    root.attributes('-transparentcolor', 'purple')
+    root.configure(bg='purple')
 
 def flash_image(imagePath, duration=3):
     """Flash an image on the screen."""
-    global root, images
+    global root, images, jeff
     if root is None:
         raise RuntimeError("Tkinter root is not initialized. Call setup_tkinter first.")
 
@@ -258,7 +273,7 @@ def flash_image(imagePath, duration=3):
     y_pos = random.randint(0, screen_height - image_height)
 
     # Create a label for the image
-    label = tk.Label(root, bg='black')
+    label = tk.Label(root, bg='purple')
     label.place(x=x_pos, y=y_pos)
 
     if ".gif" in imagePath:
@@ -283,8 +298,11 @@ def flash_image(imagePath, duration=3):
                 except tk.TclError:
                     pass
 
-        p.play()
+
         update_frame(0)
+        if jeff == True:
+            root.after(int(duration * 1000), p.play())
+            jeff = False
     else:
         # Single frame image
         img = ImageTk.PhotoImage(image, master=root)

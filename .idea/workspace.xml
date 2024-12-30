@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="shouldn't be added">
-      <change afterPath="$PROJECT_DIR$/Images/freeze.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/onepiece.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/freeze.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/WordsToSounds.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WordsToSounds.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added 3 more images">
+      <change afterPath="$PROJECT_DIR$/Images/jeff.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/soccer.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/jeff.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Sounds/soccer.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
     </list>
@@ -40,23 +39,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.GrabChat.executor&quot;: &quot;Run&quot;,
-    &quot;Python.PlaySound.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/pines/PycharmProjects/WordsToSounds/Sounds&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.GrabChat.executor": "Run",
+    "Python.PlaySound.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/pines/PycharmProjects/WordsToSounds/Images"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Images" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Sounds" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Images" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Sounds" />
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Images" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\src" />
     </key>
@@ -125,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1734400582565</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added 3 more images">
+      <created>1734678577429</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734678577429</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,6 +153,7 @@
     <MESSAGE value="Added a few more sounds." />
     <MESSAGE value="Added a lot more sound. First stream with this went well!" />
     <MESSAGE value="Added translation support. And 2 new sounds." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added translation support. And 2 new sounds." />
+    <MESSAGE value="Added 3 more images" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added 3 more images" />
   </component>
 </project>
