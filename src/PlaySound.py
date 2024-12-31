@@ -1,50 +1,55 @@
 import asyncio
+import os
 import re
+import time
+from datetime import datetime
 import vlc
 import threading
 from PIL import Image, ImageTk
 import tkinter as tk
 from googletrans import Translator
 import random
+import cv2
 
-
-POLLING_INTERVAL = 5
+POLLINGINTERVAL = 5
 translator = Translator()
-excluded_names = {"Tio", "Gio"}
+excludedNames = {"Tio", "Gio"}
 p = vlc.MediaPlayer("../Sounds/metalpipe.mp3")
-jeff = False
+today = datetime.today()
+christmasTimeStart = datetime(today.year, 12, 18)
+christmasTimeEnd = datetime(today.year + 1, 1, 1)
+content = 1
 
 
 def translateToEnglish(text):
-    placeholder_map = {}
+    placeholderMap = {}
     words = text.split()
     for i, word in enumerate(words):
-        clean_word = word.strip("!,.?")  # Remove punctuation for matching
-        if clean_word.capitalize() in excluded_names:
+        cleanWord = word.strip("!,.?")  # Remove punctuation for matching
+        if cleanWord.capitalize() in excludedNames:
             placeholder = f"__name_{i}__"
-            placeholder_map[placeholder] = word
+            placeholderMap[placeholder] = word
             words[i] = placeholder
 
-    text_with_placeholders = " ".join(words)
-    detected_lang = translator.detect(text_with_placeholders).lang
+    textWithPlaceholders = " ".join(words)
+    detectedLang = translator.detect(textWithPlaceholders).lang
 
-    if detected_lang != "en":
-        translated_text = translator.translate(text_with_placeholders, dest="en").text
+    if detectedLang != "en":
+        translatedText = translator.translate(textWithPlaceholders, dest="en").text
     else:
-        translated_text = text_with_placeholders
+        translatedText = textWithPlaceholders
 
-    for placeholder, original_name in placeholder_map.items():
+    for placeholder, originalName in placeholderMap.items():
         print(placeholder)
-        print(original_name)
-        translated_text = translated_text.replace(placeholder, original_name)
+        print(originalName)
+        translatedText = translatedText.replace(placeholder, originalName)
 
-    return translated_text
+    return translatedText
 
 
-def play_sound(message):
-    global p
-    global jeff
-    #message = translateToEnglish(message)
+def playSound(message):
+    global p, content
+    # message = translateToEnglish(message)
     message = message.lower()
     print(message)
     if "steal" in message or "steel" in message:
@@ -83,8 +88,6 @@ def play_sound(message):
         p.play()
         multipleTriggers("../Images/pikminy.gif", duration=2)
 
-
-
     if "gamese39yippee" in message or "yippee" in message:
         p = vlc.MediaPlayer("../Sounds/yippee.mp3")
         p.play()
@@ -104,10 +107,10 @@ def play_sound(message):
     if "gambling" in message:
         rand = random.randint(1, 10)
         if 0 < rand < 10:
-            p = vlc.MediaPlayer("../Sounds/gamblinglose.mp3")
+            multipleTriggers("../Videos/gamblinglose.mp4")
         else:
-            p = vlc.MediaPlayer("../Sounds/gamblingwin.mp3")
-        p.play()
+            multipleTriggers("../Videos/gamblingwin.mp4")
+
     if "fnaf" in message or "five night's at freddy's" in message or "five nights at freddys" in message \
             or "freddy" in message or "animatronic" in message or "foxy" in message or "bonnie" in message \
             or "chica" in message or "baby" in message or "ennard" in message or "springtrap" in message \
@@ -124,23 +127,21 @@ def play_sound(message):
             or "endo" in message or "the mimic" in message or "tangle" in message or "helpy" in message:
         rand = random.randint(1, 8)
         if rand == 1:
-            p = vlc.MediaPlayer("../Sounds/fnaf1.mp3")
+            multipleTriggers("../Videos/fnaf1.mp4")
         elif rand == 2:
-            p = vlc.MediaPlayer("../Sounds/fnaf2.mp3")
+            multipleTriggers("../Videos/fnaf2.mp4")
         elif rand == 3:
-            p = vlc.MediaPlayer("../Sounds/fnaf3.mp3")
+            multipleTriggers("../Videos/fnaf3.mp4", duration=8)
         elif rand == 4:
-            p = vlc.MediaPlayer("../Sounds/fnaf4.mp3")
+            multipleTriggers("../Videos/fnaf4.mp4")
         elif rand == 5:
-            p = vlc.MediaPlayer("../Sounds/fnaf5.mp3")
+            multipleTriggers("../Videos/fnaf5.mp4")
         elif rand == 6:
-            p = vlc.MediaPlayer("../Sounds/fnaf6.mp3")
+            multipleTriggers("../Videos/fnaf6.mp4")
         elif rand == 7:
-            p = vlc.MediaPlayer("../Sounds/fnafs.mp3")
+            multipleTriggers("../Videos/fnafs.mp4")
         elif rand == 8:
-            p = vlc.MediaPlayer("../Sounds/fnafj.mp3")
-        p.play()
-        multipleTriggers("../Images/foxy.gif", duration=1)
+            multipleTriggers("../Videos/fnafj.mp4")
 
     if "one piece" in message or "onepiece" in message:
         p = vlc.MediaPlayer("../Sounds/onepiece.mp3")
@@ -218,36 +219,40 @@ def play_sound(message):
 
     if "bye tio" in message:
         p = vlc.MediaPlayer("../Sounds/seeya.mp3")
-        #multipleTriggers("../Images/moist.png", duration=2)
+        # multipleTriggers("../Images/moist.png", duration=2)
 
     if "bye gio" in message:
         p = vlc.MediaPlayer("../Sounds/byeosu.mp3")
         p.play()
 
-    if "christmas" in message:
-        p = vlc.MediaPlayer("../Sounds/christmas.mp3")
-        p.play()
-        multipleTriggers("../Images/christmas.gif", duration=19)
+    if christmasTimeStart <= today <= christmasTimeEnd:
+        if "christmas" in message:
+            multipleTriggers("../Videos/christmas.mp4")
 
     if "freeze" in message:
-        p = vlc.MediaPlayer("../Sounds/freeze.mp3")
-        p.play()
-        multipleTriggers("../Images/freeze.gif", duration=12)
+        multipleTriggers("../Videos/freeze.mp4")
 
     if "soccer" in message:
-        p = vlc.MediaPlayer("../Sounds/soccer.mp3")
-        p.play()
-        multipleTriggers("../Images/soccer.gif", duration=12)
+        multipleTriggers("../Videos/soccer.mp4", duration=12)
+
     if "jeff" in message:
-        p = vlc.MediaPlayer("../Sounds/jeff.mp3")
-        multipleTriggers("../Images/jeff.gif", duration=25)
-        jeff = True
+        multipleTriggers("../Videos/jeff.mp4")
+
+    if "content" in message and content == 1:
+        content -= 1
+
+        p = vlc.MediaPlayer("../Sounds/silent.mp3")
+        p.play()
+    elif "content" in message and content != 1:
+        p.stop()
 
 
 root = None
 images = []
+videos = []
 
-def setup_tkinter():
+
+def setupTkinter():
     """Initialize the Tkinter root window."""
     global root
     root = tk.Tk()
@@ -256,25 +261,26 @@ def setup_tkinter():
     root.attributes('-transparentcolor', 'purple')
     root.configure(bg='purple')
 
-def flash_image(imagePath, duration=3):
+
+def flashImage(imagePath, duration=3):
     """Flash an image on the screen."""
-    global root, images, jeff
+    global root, images
     if root is None:
-        raise RuntimeError("Tkinter root is not initialized. Call setup_tkinter first.")
+        raise RuntimeError("Tkinter root is not initialized. Call setupTkinter first.")
 
     # Load the image
     image = Image.open(imagePath)
-    image_width, image_height = image.size
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
+    imageWidth, imageHeight = image.size
+    screenWidth = root.winfo_screenwidth()
+    screenHeight = root.winfo_screenheight()
 
     # Random position on screen
-    x_pos = random.randint(0, screen_width - image_width)
-    y_pos = random.randint(0, screen_height - image_height)
+    xPos = random.randint(0, screenWidth - imageWidth)
+    yPos = random.randint(0, screenHeight - imageHeight)
 
     # Create a label for the image
     label = tk.Label(root, bg='purple')
-    label.place(x=x_pos, y=y_pos)
+    label.place(x=xPos, y=yPos)
 
     if ".gif" in imagePath:
         # Load frames for GIF
@@ -286,23 +292,19 @@ def flash_image(imagePath, duration=3):
         except EOFError:
             pass
 
-        def update_frame(index):
+        def updateFrame(index):
             if label.winfo_exists():
                 try:
                     label.config(image=frames[index])
                     label.image = frames[index]  # Keep a reference to avoid garbage collection
                     if index + 1 < len(frames):
-                        root.after(100, update_frame, index + 1)
+                        root.after(100, updateFrame, index + 1)
                     else:
-                        root.after(100, update_frame, 0)
+                        root.after(100, updateFrame, 0)
                 except tk.TclError:
                     pass
 
-
-        update_frame(0)
-        if jeff == True:
-            root.after(int(duration * 1000), p.play())
-            jeff = False
+        updateFrame(0)
     else:
         # Single frame image
         img = ImageTk.PhotoImage(image, master=root)
@@ -311,19 +313,85 @@ def flash_image(imagePath, duration=3):
 
     # Add the label to the active list and schedule its removal
     images.append(label)
-    root.after(int(duration * 1000), lambda: remove_image(label))
+    root.after(int(duration * 1000), lambda: removeImage(label))
 
-def remove_image(label):
+
+def flashVideo(videoPath, duration=None):
+    """Flash an MP4 video with sound on the screen, playing for its entire length."""
+    global root, videos
+    if root is None:
+        raise RuntimeError("Tkinter root is not initialized. Call setupTkinter first.")
+
+    # Create a new VLC instance for playback
+    instance = vlc.Instance()
+    player = instance.media_player_new()
+    media = instance.media_new(videoPath)
+    player.set_media(media)
+
+    cap = cv2.VideoCapture(videoPath)
+    videoWidth = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    videoHeight = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    cap.release()
+
+    # Scale video dimensions to fit within maxWidth and maxHeight
+    scale = min(640 / videoWidth, 360 / videoHeight)  # default max size 640x360
+    scaledWidth = int(videoWidth * scale)
+    scaledHeight = int(videoHeight * scale)
+
+    # Random position on the screen
+    screenWidth = root.winfo_screenwidth()
+    screenHeight = root.winfo_screenheight()
+    xPos = random.randint(0, screenWidth - scaledWidth)
+    yPos = random.randint(0, screenHeight - scaledHeight)
+
+    # Create a canvas for the video
+    canvas = tk.Canvas(root, width=scaledWidth, height=scaledHeight, bg='purple', highlightthickness=0)
+    canvas.place(x=xPos, y=yPos)
+
+    # Set the VLC video output to the canvas
+    hwnd = canvas.winfo_id()  # Windows handle ID
+    player.set_hwnd(hwnd)
+
+    # Start playback
+    player.play()
+
+    time.sleep(1)
+
+    # Get the video duration in seconds
+    videoDuration = player.get_length() / 1000  # VLC gives duration in milliseconds
+
+    # If the video duration is not provided, use the video’s actual length
+    if not duration:
+        duration = videoDuration
+
+    # Schedule the video stop based on the video's actual length
+    def stopVideo():
+        player.stop()
+        canvas.destroy()
+        videos.remove(canvas)
+
+    root.after(int(duration * 940), stopVideo)
+
+    videos.append(canvas)
+
+
+def removeImage(label):
     """Remove an image from the screen."""
     global images
     if label in images and label.winfo_exists():
         label.destroy()
         images.remove(label)
 
-def run_tkinter():
+
+def runTkinter():
     """Run the Tkinter event loop in an async-compatible way."""
     global root
-    setup_tkinter()
+    setupTkinter()
     root.mainloop()
-def multipleTriggers(imagePath, duration=2):
-    threading.Thread(target=flash_image, args=(imagePath, duration), daemon=True).start()
+
+
+def multipleTriggers(mediaPath, duration=None):
+    if mediaPath.endswith(".mp4"):
+        threading.Thread(target=flashVideo, args=(mediaPath, duration), daemon=True).start()
+    else:
+        threading.Thread(target=flashImage, args=(mediaPath, duration), daemon=True).start()

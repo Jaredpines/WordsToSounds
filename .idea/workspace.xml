@@ -4,12 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added 3 more images">
-      <change afterPath="$PROJECT_DIR$/Images/jeff.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/soccer.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/jeff.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sounds/soccer.mp3" afterDir="false" />
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="shouldn't be added">
+      <change afterPath="$PROJECT_DIR$/Sounds/silent.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/christmas.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/fnaf1.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/fnaf2.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/fnaf4.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/fnaf5.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/fnaf6.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/fnafj.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/fnafs.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/freeze.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/gamblinglose.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/gamblingwin.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/jeff.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/soccer.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/WordsToSounds.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WordsToSounds.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/christmas.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/foxy.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/freeze.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Videos/fnaf3.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/jeff.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/soccer.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/christmas.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/fnaf1.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/fnaf2.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/fnaf3.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/fnaf4.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/fnaf5.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/fnaf6.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/fnafj.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/fnafs.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/freeze.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/gamblinglose.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/gamblingwin.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/jeff.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sounds/soccer.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GrabChat.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GrabChat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,16 +78,16 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/pines/PycharmProjects/WordsToSounds/Images"
+    "last_opened_file_path": "C:/Users/pines/PycharmProjects/WordsToSounds/Sounds"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Images" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Sounds" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Sounds" />
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Videos" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Images" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\src" />
@@ -125,14 +157,7 @@
       <option name="project" value="LOCAL" />
       <updated>1734400582565</updated>
     </task>
-    <task id="LOCAL-00007" summary="Added 3 more images">
-      <created>1734678577429</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1734678577429</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -153,7 +178,6 @@
     <MESSAGE value="Added a few more sounds." />
     <MESSAGE value="Added a lot more sound. First stream with this went well!" />
     <MESSAGE value="Added translation support. And 2 new sounds." />
-    <MESSAGE value="Added 3 more images" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 3 more images" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added translation support. And 2 new sounds." />
   </component>
 </project>

@@ -10,7 +10,7 @@ from google.auth.transport.requests import Request
 import pickle
 import os
 
-from src.PlaySound import play_sound, run_tkinter, setup_tkinter
+from src.PlaySound import playSound, runTkinter, setupTkinter
 
 nest_asyncio.apply()
 POLLING_INTERVAL = 5
@@ -111,10 +111,11 @@ class YouTubeChatHandler:
 
 
 async def main():
-    twitch_bot = TwitchBot(play_sound)
-    youtube_handler = YouTubeChatHandler(play_sound)
-    setup_tkinter()
-    threading.Thread(target=run_tkinter, daemon=True).start()
+    twitch_bot = TwitchBot(playSound)
+    youtube_handler = YouTubeChatHandler(playSound)
+    setupTkinter()
+    threading.Thread(target=runTkinter, daemon=True).start()
+
     # Run both handlers concurrently
     await asyncio.gather(
         #youtube_handler.start(),
