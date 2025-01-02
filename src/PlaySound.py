@@ -7,47 +7,49 @@ import vlc
 import threading
 from PIL import Image, ImageTk
 import tkinter as tk
-from googletrans import Translator
+#from googletrans import Translator
 import random
 import cv2
 
 POLLINGINTERVAL = 5
-translator = Translator()
+#translator = Translator()
 excludedNames = {"Tio", "Gio"}
 p = vlc.MediaPlayer("../Sounds/metalpipe.mp3")
 today = datetime.today()
 christmasTimeStart = datetime(today.year, 12, 18)
 christmasTimeEnd = datetime(today.year + 1, 1, 1)
+jan = datetime(today.year, 1, 1)
 content = 1
 
 
-def translateToEnglish(text):
-    placeholderMap = {}
-    words = text.split()
-    for i, word in enumerate(words):
-        cleanWord = word.strip("!,.?")  # Remove punctuation for matching
-        if cleanWord.capitalize() in excludedNames:
-            placeholder = f"__name_{i}__"
-            placeholderMap[placeholder] = word
-            words[i] = placeholder
-
-    textWithPlaceholders = " ".join(words)
-    detectedLang = translator.detect(textWithPlaceholders).lang
-
-    if detectedLang != "en":
-        translatedText = translator.translate(textWithPlaceholders, dest="en").text
-    else:
-        translatedText = textWithPlaceholders
-
-    for placeholder, originalName in placeholderMap.items():
-        print(placeholder)
-        print(originalName)
-        translatedText = translatedText.replace(placeholder, originalName)
-
-    return translatedText
+# def translateToEnglish(text):
+#     placeholderMap = {}
+#     words = text.split()
+#     for i, word in enumerate(words):
+#         cleanWord = word.strip("!,.?")  # Remove punctuation for matching
+#         if cleanWord.capitalize() in excludedNames:
+#             placeholder = f"__name_{i}__"
+#             placeholderMap[placeholder] = word
+#             words[i] = placeholder
+#
+#     textWithPlaceholders = " ".join(words)
+#     detectedLang = translator.detect(textWithPlaceholders).lang
+#
+#     if detectedLang != "en":
+#         translatedText = translator.translate(textWithPlaceholders, dest="en").text
+#     else:
+#         translatedText = textWithPlaceholders
+#
+#     for placeholder, originalName in placeholderMap.items():
+#         print(placeholder)
+#         print(originalName)
+#         translatedText = translatedText.replace(placeholder, originalName)
+#
+#     return translatedText
 
 
 def playSound(message):
+    today = datetime.today()
     global p, content
     # message = translateToEnglish(message)
     message = message.lower()
@@ -245,6 +247,24 @@ def playSound(message):
         p.play()
     elif "content" in message and content != 1:
         p.stop()
+
+    print(today)
+    print(jan)
+    if "happy new year" in message:
+        multipleTriggers("../Videos/jeff.mp4")
+        multipleTriggers("../Videos/soccer.mp4", duration=12)
+        multipleTriggers("../Videos/freeze.mp4")
+        multipleTriggers("../Videos/christmas.mp4")
+        multipleTriggers("../Videos/gamblinglose.mp4")
+        multipleTriggers("../Videos/gamblingwin.mp4")
+        multipleTriggers("../Videos/fnaf1.mp4")
+        multipleTriggers("../Videos/fnaf2.mp4")
+        multipleTriggers("../Videos/fnaf3.mp4")
+        multipleTriggers("../Videos/fnaf4.mp4")
+        multipleTriggers("../Videos/fnaf5.mp4")
+        multipleTriggers("../Videos/fnaf6.mp4")
+        multipleTriggers("../Videos/fnafs.mp4")
+        multipleTriggers("../Videos/fnafj.mp4")
 
 
 root = None
