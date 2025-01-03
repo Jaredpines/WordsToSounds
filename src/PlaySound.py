@@ -10,16 +10,17 @@ import tkinter as tk
 #from googletrans import Translator
 import random
 import cv2
+from ctypes import windll
 
 POLLINGINTERVAL = 5
 #translator = Translator()
 excludedNames = {"Tio", "Gio"}
-p = vlc.MediaPlayer("../Sounds/metalpipe.mp3")
 today = datetime.today()
 christmasTimeStart = datetime(today.year, 12, 18)
 christmasTimeEnd = datetime(today.year + 1, 1, 1)
 jan = datetime(today.year, 1, 1)
 content = 1
+ss = 1
 
 
 # def translateToEnglish(text):
@@ -50,8 +51,10 @@ content = 1
 
 def playSound(message):
     today = datetime.today()
-    global p, content
+    p = None
+    global players, content, ss
     # message = translateToEnglish(message)
+
     message = message.lower()
     print(message)
     if "steal" in message or "steel" in message:
@@ -79,16 +82,21 @@ def playSound(message):
         rand = random.randint(0, 4)
         if rand == 0:
             p = vlc.MediaPlayer("../Sounds/pikmin.mp3")
+            pikmin()
         elif rand == 1:
             p = vlc.MediaPlayer("../Sounds/pikmindeath.mp3")
+            multipleTriggers("../Images/pikminy.gif", duration=2)
         elif rand == 2:
             p = vlc.MediaPlayer("../Sounds/pikminfall.mp3")
+            multipleTriggers("../Images/pikminy.gif", duration=2)
         elif rand == 3:
             p = vlc.MediaPlayer("../Sounds/pikminpluck.mp3")
+            pikmin()
         elif rand == 4:
             p = vlc.MediaPlayer("../Sounds/pikminthrow.mp3")
+            multipleTriggers("../Images/pikminy.gif", duration=2)
         p.play()
-        multipleTriggers("../Images/pikminy.gif", duration=2)
+
 
     if "gamese39yippee" in message or "yippee" in message:
         p = vlc.MediaPlayer("../Sounds/yippee.mp3")
@@ -248,8 +256,10 @@ def playSound(message):
     elif "content" in message and content != 1:
         p.stop()
 
-    print(today)
-    print(jan)
+    if "subway surfers" in message and ss == 1:
+        ss -= 1
+        multipleTriggers("../Videos/subway.mp4")
+
     if "happy new year" in message:
         multipleTriggers("../Videos/jeff.mp4")
         multipleTriggers("../Videos/soccer.mp4", duration=12)
@@ -265,11 +275,23 @@ def playSound(message):
         multipleTriggers("../Videos/fnaf6.mp4")
         multipleTriggers("../Videos/fnafs.mp4")
         multipleTriggers("../Videos/fnafj.mp4")
+    if "kill all" in message:
+        for image in images:
+            image.destroy()
+        for video in videos:
+            video.destroy()
+        for player in players:
+            player.stop()
+        ss = 1
+        content = 1
 
+    if p != None:
+        players.append(p)
 
 root = None
 images = []
 videos = []
+players = []
 
 
 def setupTkinter():
@@ -280,6 +302,7 @@ def setupTkinter():
     root.attributes('-fullscreen', True)
     root.attributes('-transparentcolor', 'purple')
     root.configure(bg='purple')
+    root.overrideredirect(True)
 
 
 def flashImage(imagePath, duration=3):
@@ -338,7 +361,7 @@ def flashImage(imagePath, duration=3):
 
 def flashVideo(videoPath, duration=None):
     """Flash an MP4 video with sound on the screen, playing for its entire length."""
-    global root, videos
+    global root, videos, players
     if root is None:
         raise RuntimeError("Tkinter root is not initialized. Call setupTkinter first.")
 
@@ -347,7 +370,9 @@ def flashVideo(videoPath, duration=None):
     player = instance.media_player_new()
     media = instance.media_new(videoPath)
     player.set_media(media)
-
+    players.append(player)
+    player.audio_set_volume(100)
+    player.audio_set_mute(False)
     cap = cv2.VideoCapture(videoPath)
     videoWidth = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     videoHeight = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -363,7 +388,9 @@ def flashVideo(videoPath, duration=None):
     screenHeight = root.winfo_screenheight()
     xPos = random.randint(0, screenWidth - scaledWidth)
     yPos = random.randint(0, screenHeight - scaledHeight)
-
+    if "subway" in videoPath:
+        xPos = 0
+        yPos = 0
     # Create a canvas for the video
     canvas = tk.Canvas(root, width=scaledWidth, height=scaledHeight, bg='purple', highlightthickness=0)
     canvas.place(x=xPos, y=yPos)
@@ -389,7 +416,6 @@ def flashVideo(videoPath, duration=None):
         player.stop()
         canvas.destroy()
         videos.remove(canvas)
-
     root.after(int(duration * 940), stopVideo)
 
     videos.append(canvas)
@@ -415,3 +441,92 @@ def multipleTriggers(mediaPath, duration=None):
         threading.Thread(target=flashVideo, args=(mediaPath, duration), daemon=True).start()
     else:
         threading.Thread(target=flashImage, args=(mediaPath, duration), daemon=True).start()
+
+
+def pikmin():
+    global root, images
+    screenWidth = root.winfo_screenwidth()
+    screenHeight = root.winfo_screenheight()
+    windowWidth = 150
+    windowHeight = 185
+
+    # Create a canvas for each Pikmin
+    canvas = tk.Canvas(root, width=windowWidth, height=windowHeight, bd=0, highlightthickness=0, bg="#010203")
+    colorkey = 0x00030201
+    hwnd = canvas.winfo_id()
+    wnd_exstyle = windll.user32.GetWindowLongA(hwnd, -20)  # GWL_EXSTYLE
+    new_exstyle = wnd_exstyle | 0x00080000  # WS_EX_LAYERED
+    windll.user32.SetWindowLongA(hwnd, -20, new_exstyle)  # GWL_EXSTYLE
+    windll.user32.SetLayeredWindowAttributes(hwnd, colorkey, 255, 0x00000001)
+    canvas.place(x=screenWidth - windowWidth, y=screenHeight - windowHeight)
+
+    # Open the GIF
+    rand = random.randint(0, 2)
+    if rand == 0:
+        image = Image.open("../Images/pikminwalk.gif")
+    elif rand == 1:
+        image = Image.open("../Images/pikminwalkb.gif")
+    elif rand == 2:
+        image = Image.open("../Images/pikminwalky.gif")
+
+    # Set the desired size for the image
+    desiredWidth = 150
+    desiredHeight = 200
+
+    frames = []
+    flippedFrames = []
+    try:
+        while True:
+            # Resize and store original frames
+            resizedFrame = image.copy().resize((desiredWidth, desiredHeight))
+            frames.append(ImageTk.PhotoImage(resizedFrame, master=root))
+
+            # Create flipped frames
+            flippedFrame = resizedFrame.transpose(Image.FLIP_LEFT_RIGHT)
+            flippedFrames.append(ImageTk.PhotoImage(flippedFrame, master=root))
+
+            image.seek(len(frames))
+    except EOFError:
+        pass
+
+    currentFrames = frames  # Start with original frames
+
+    frameId = canvas.create_image(0, 0, image=frames[0], anchor='nw')
+
+    def updateFrame(index):
+        if canvas.winfo_exists():
+            try:
+                canvas.itemconfig(frameId, image=currentFrames[index])
+                if index + 1 < len(currentFrames):
+                    root.after(100, updateFrame, index + 1)
+                else:
+                    root.after(100, updateFrame, 0)
+            except tk.TclError:
+                pass
+
+    updateFrame(0)
+    images.append(canvas)
+
+    dx = 5
+    direction = -1
+    startX = screenWidth - windowWidth
+
+    def move():
+        nonlocal startX, direction, currentFrames
+        if canvas.winfo_exists():
+            # Update position
+            startX += dx * direction
+            canvas.place(x=startX, y=screenHeight - windowHeight)
+
+            # Reverse direction and flip frames at screen edges
+            if startX <= 0:
+                direction = 1
+                currentFrames = flippedFrames
+            elif startX >= (screenWidth - desiredWidth):
+                direction = -1
+                currentFrames = frames
+
+            # Schedule next move
+            root.after(50, move)
+
+    move()
