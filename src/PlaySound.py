@@ -295,14 +295,12 @@ players = []
 
 
 def setupTkinter():
-    """Initialize the Tkinter root window."""
     global root
     root = tk.Tk()
     root.attributes('-topmost', True)
     root.attributes('-fullscreen', True)
     root.attributes('-transparentcolor', 'purple')
     root.configure(bg='purple')
-    root.overrideredirect(True)
 
 
 def flashImage(imagePath, duration=3):
