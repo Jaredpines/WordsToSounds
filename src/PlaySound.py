@@ -7,13 +7,13 @@ import vlc
 import threading
 from PIL import Image, ImageTk
 import tkinter as tk
-#from googletrans import Translator
+# from googletrans import Translator
 import random
 import cv2
 from ctypes import windll
 
 POLLINGINTERVAL = 5
-#translator = Translator()
+# translator = Translator()
 excludedNames = {"Tio", "Gio"}
 today = datetime.today()
 christmasTimeStart = datetime(today.year, 12, 18)
@@ -21,6 +21,7 @@ christmasTimeEnd = datetime(today.year + 1, 1, 1)
 jan = datetime(today.year, 1, 1)
 content = 1
 ss = 1
+win = False
 
 
 # def translateToEnglish(text):
@@ -49,14 +50,14 @@ ss = 1
 #     return translatedText
 
 
-def playSound(message):
+def playSound(author, message):
     today = datetime.today()
     p = None
-    global players, content, ss
+    global players, content, ss, win
     # message = translateToEnglish(message)
-
     message = message.lower()
     print(message)
+
     if "steal" in message or "steel" in message:
         p = vlc.MediaPlayer("../Sounds/metalpipe.mp3")
         p.play()
@@ -97,7 +98,6 @@ def playSound(message):
             multipleTriggers("../Images/pikminy.gif", duration=2)
         p.play()
 
-
     if "gamese39yippee" in message or "yippee" in message:
         p = vlc.MediaPlayer("../Sounds/yippee.mp3")
         p.play()
@@ -118,9 +118,46 @@ def playSound(message):
         rand = random.randint(1, 10)
         if 0 < rand < 10:
             multipleTriggers("../Videos/gamblinglose.mp4")
+            win = False
         else:
             multipleTriggers("../Videos/gamblingwin.mp4")
+            win = True
 
+        inputOutputFilePath = "../Leaderboard/saves.txt"
+        try:
+            with open(inputOutputFilePath, 'r+', encoding='utf-8') as inoutfile:
+                lines = inoutfile.readlines()  # Read all lines into a list
+
+                author_found = False
+                for i, line in enumerate(lines):
+                    if author in line and win==True:
+                        author_found = True
+                        # Extract the current win count from the line
+                        current_wins = int(line.split(":")[1].split()[0])  # Get the current win count as an integer
+                        # Increment the wins by 1
+                        lines[i] = f"{author}: {current_wins + 1} wins\n"  # Update the line with new win count
+                        break  # Exit the loop once the author is found
+                    elif author in line and win==False:
+                        author_found = True
+                        current_wins = int(line.split(":")[1].split()[0])
+                        lines[i] = f"{author}: {current_wins} wins\n"
+                if not author_found and win == True:
+                    # If the author is not found, add a new line with 1 win
+                    lines.append(f"{author}: 1 win\n")
+                elif not author_found and win == False:
+                    lines.append(f"{author}: 0 wins\n")
+
+                # Go back to the beginning of the file and overwrite the content
+                inoutfile.seek(0)
+                inoutfile.writelines(lines)  # Write the modified content back to the file
+                inoutfile.truncate()  # Ensure the file is truncated to the correct size
+                win = False
+
+        except FileNotFoundError:
+            print(f"File not found: {inputOutputFilePath}")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+        leaderboard()
     if "fnaf" in message or "five night's at freddy's" in message or "five nights at freddys" in message \
             or "freddy" in message or "animatronic" in message or "foxy" in message or "bonnie" in message \
             or "chica" in message or "baby" in message or "ennard" in message or "springtrap" in message \
@@ -288,6 +325,7 @@ def playSound(message):
     if p != None:
         players.append(p)
 
+
 root = None
 images = []
 videos = []
@@ -301,6 +339,7 @@ def setupTkinter():
     root.attributes('-fullscreen', True)
     root.attributes('-transparentcolor', 'purple')
     root.configure(bg='purple')
+    root.after(1, leaderboard)
 
 
 def flashImage(imagePath, duration=3):
@@ -414,6 +453,7 @@ def flashVideo(videoPath, duration=None):
         player.stop()
         canvas.destroy()
         videos.remove(canvas)
+
     root.after(int(duration * 940), stopVideo)
 
     videos.append(canvas)
@@ -528,3 +568,54 @@ def pikmin():
             root.after(50, move)
 
     move()
+
+canvass = []
+def leaderboard():
+    global root
+    windowWidth = 250
+    windowHeight = 285
+    xPos = 0
+    yPos = 0
+    canvas = tk.Canvas(root, width=windowWidth, height=windowHeight, background="#010203", bd=0, highlightthickness=0)
+    canvass.append(canvas)
+    colorkey = 0x00030201
+    hwnd = canvas.winfo_id()
+    wnd_exstyle = windll.user32.GetWindowLongA(hwnd, -20)  # GWL_EXSTYLE
+    new_exstyle = wnd_exstyle | 0x00080000  # WS_EX_LAYERED
+    windll.user32.SetWindowLongA(hwnd, -20, new_exstyle)  # GWL_EXSTYLE
+    windll.user32.SetLayeredWindowAttributes(hwnd, colorkey, 255, 0x00000001)
+    text = canvas.create_text(0, 0, text="Gambling Leaderboard", font=('Helvetica', 20), fill="Black", anchor="center")
+    if len(canvass) > 1:
+        canvass.pop(0).delete("all")
+    bbox = canvas.bbox(text)  # Returns (x1, y1, x2, y2)
+    textWidth = bbox[2] - bbox[0]
+    textHeight = bbox[3] - bbox[1]
+    canvas.config(width=textWidth, height=textHeight)
+    canvas.coords(text, textWidth / 2, textHeight / 2)
+    inputOutputFilePath = "../Leaderboard/saves.txt"
+    try:
+        with open(inputOutputFilePath, 'r', encoding='utf-8') as inoutfile:
+            lineCount = 2
+            for line in inoutfile:
+                addLineOfText(canvas, line,lineCount)
+                lineCount += 1
+    except FileNotFoundError:
+        print(f"File not found: {inputOutputFilePath}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+    canvas.place(x=xPos, y=yPos)
+
+
+def addLineOfText(canvas, lineText, lineCount):
+    textItem = canvas.create_text(0, 0, text=lineText.strip(), font=('Helvetica', 16), fill="Black", anchor="w")
+
+    # Get bounding box of the new text line
+    bbox = canvas.bbox(textItem)
+    textHeight = bbox[3] - bbox[1]
+
+    # Resize the canvas height to fit all the text lines
+    canvas.config(height=(textHeight * lineCount + 20))  # Add a little padding
+
+    # Place the text at a vertical position based on the lineCount
+    canvas.coords(textItem, 10, textHeight * lineCount)  # 10px padding from the left

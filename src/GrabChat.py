@@ -30,7 +30,7 @@ class TwitchBot(commands.Bot):
     async def event_message(self, message):
         if message.echo:
             return
-        self.callback(f"{message.content}")
+        self.callback(message.author.display_name, f"{message.content}")
 
 
 class YouTubeChatHandler:
