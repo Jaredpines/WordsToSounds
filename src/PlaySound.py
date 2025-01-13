@@ -297,6 +297,9 @@ def playSound(author, message):
         ss -= 1
         multipleTriggers("../Videos/subway.mp4")
 
+    if "before" in message:
+        multipleTriggers("../Videos/squid.mp4")
+
     if "happy new year" in message:
         multipleTriggers("../Videos/jeff.mp4")
         multipleTriggers("../Videos/soccer.mp4", duration=12)
