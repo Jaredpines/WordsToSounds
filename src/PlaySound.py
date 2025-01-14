@@ -22,6 +22,7 @@ jan = datetime(today.year, 1, 1)
 content = 1
 ss = 1
 win = False
+groan = 0
 
 
 # def translateToEnglish(text):
@@ -53,7 +54,7 @@ win = False
 def playSound(author, message):
     today = datetime.today()
     p = None
-    global players, content, ss, win
+    global players, content, ss, win, groan
     # message = translateToEnglish(message)
     message = message.lower()
     print(message)
@@ -99,8 +100,10 @@ def playSound(author, message):
         p.play()
 
     if "gamese39yippee" in message or "yippee" in message:
-        p = vlc.MediaPlayer("../Sounds/yippee.mp3")
-        p.play()
+        count = message.count("yippee") + message.count("gamese39yippee")
+        for _ in range(count):
+            p = vlc.MediaPlayer("../Sounds/yippee.mp3")
+            p.play()
 
     if "door" in message:
         p = vlc.MediaPlayer("../Sounds/door.mp3")
@@ -266,6 +269,7 @@ def playSound(author, message):
 
     if "bye tio" in message:
         p = vlc.MediaPlayer("../Sounds/seeya.mp3")
+        p.play()
         # multipleTriggers("../Images/moist.png", duration=2)
 
     if "bye gio" in message:
@@ -280,7 +284,9 @@ def playSound(author, message):
         multipleTriggers("../Videos/freeze.mp4")
 
     if "soccer" in message:
-        multipleTriggers("../Videos/soccer.mp4", duration=12)
+        count = message.count("soccer")
+        for _ in range(count):
+            multipleTriggers("../Videos/soccer.mp4", duration=12)
 
     if "jeff" in message:
         multipleTriggers("../Videos/jeff.mp4")
@@ -300,6 +306,32 @@ def playSound(author, message):
     if "before" in message:
         multipleTriggers("../Videos/squid.mp4")
 
+    if "groan tube" in message or "groantube" in message or "aaaaaeeeeeuuuuu" in message or "uuuuueeeeeaaaaa" in message:
+        if groan == 0:
+            groan = 1
+            p = vlc.MediaPlayer("../Sounds/groanUp.mp3")
+            p.play()
+        else:
+            groan = 0
+            p = vlc.MediaPlayer("../Sounds/groanDown.mp3")
+            p.play()
+
+    if "jerma" in message:
+        multipleTriggers("../Videos/jerma.mp4")
+
+    if "donate" in message or "donation" in message or "donating" in message or "give me your money" in message:
+        count = message.count("donate") + message.count("donation") + message.count("donating") + message.count("give me your money")
+        for _ in range(count):
+            multipleTriggers("../Videos/give.mp4")
+
+    if "i'm dead" in message:
+        multipleTriggers("../Videos/imdead.mp4")
+
+    if "flashbang" in message or "flash bang" in message:
+        count = message.count("flashbang") + message.count("flash bang")
+        for _ in range(count):
+            multipleTriggers("../Videos/thinkfast.mp4")
+
     if "happy new year" in message:
         multipleTriggers("../Videos/jeff.mp4")
         multipleTriggers("../Videos/soccer.mp4", duration=12)
@@ -315,6 +347,8 @@ def playSound(author, message):
         multipleTriggers("../Videos/fnaf6.mp4")
         multipleTriggers("../Videos/fnafs.mp4")
         multipleTriggers("../Videos/fnafj.mp4")
+
+
     if "kill all" in message:
         for image in images:
             image.destroy()
@@ -345,7 +379,7 @@ def setupTkinter():
     root.after(1, leaderboard)
 
 
-def flashImage(imagePath, duration=3):
+def flashImage(imagePath, duration=3, flip=False):
     """Flash an image on the screen."""
     global root, images
     if root is None:
@@ -363,9 +397,12 @@ def flashImage(imagePath, duration=3):
 
     # Create a label for the image
     label = tk.Label(root, bg='purple')
-    label.place(x=xPos, y=yPos)
+    if flip == False:
+        label.place(x=xPos, y=yPos)
+    else:
+        label.place(x=root.winfo_screenwidth() - imageWidth, y=0)
 
-    if ".gif" in imagePath:
+    if ".gif" in imagePath and flip == False:
         # Load frames for GIF
         frames = []
         try:
@@ -388,6 +425,10 @@ def flashImage(imagePath, duration=3):
                     pass
 
         updateFrame(0)
+    elif ".gif" in imagePath and flip == True:
+        img = ImageTk.PhotoImage(image, master=root)
+        label.config(image=img)
+        label.image = img
     else:
         # Single frame image
         img = ImageTk.PhotoImage(image, master=root)
@@ -396,7 +437,8 @@ def flashImage(imagePath, duration=3):
 
     # Add the label to the active list and schedule its removal
     images.append(label)
-    root.after(int(duration * 1000), lambda: removeImage(label))
+    if flip == False:
+        root.after(int(duration * 1000), lambda: removeImage(label))
 
 
 def flashVideo(videoPath, duration=None):
