@@ -23,6 +23,7 @@ content = 1
 ss = 1
 win = False
 groan = 0
+jeff = 0
 
 
 # def translateToEnglish(text):
@@ -54,10 +55,14 @@ groan = 0
 def playSound(author, message):
     today = datetime.today()
     p = None
-    global players, content, ss, win, groan
+    global players, content, ss, win, groan, videos, jeff
     # message = translateToEnglish(message)
     message = message.lower()
     print(message)
+
+    if jeff > 0 and len(videos) <= 1:
+        jeff = 0
+
 
     if "steal" in message or "steel" in message:
         p = vlc.MediaPlayer("../Sounds/metalpipe.mp3")
@@ -73,8 +78,7 @@ def playSound(author, message):
         p.play()
 
     if "butter dog" in message or "butterdog" in message or "🧈🐶" in message:
-        p = vlc.MediaPlayer("../Sounds/butterdog.mp3")
-        p.play()
+        multipleTriggers("../Videos/butter.mp4")
 
     if "gamese39omg" in message or "omg" in message:
         p = vlc.MediaPlayer("../Sounds/omg.mp3")
@@ -288,8 +292,9 @@ def playSound(author, message):
         for _ in range(count):
             multipleTriggers("../Videos/soccer.mp4", duration=12)
 
-    if "jeff" in message:
+    if "jeff" in message and jeff == 0:
         multipleTriggers("../Videos/jeff.mp4")
+        jeff += 1
 
     if "content" in message and content == 1:
         content -= 1
@@ -348,8 +353,22 @@ def playSound(author, message):
         multipleTriggers("../Videos/fnafs.mp4")
         multipleTriggers("../Videos/fnafj.mp4")
 
+    if "some of this on your that" in message:
+        multipleTriggers("../Videos/rett.mp4")
 
-    if "kill all" in message:
+    if "peanut butter and jelly the long way" in message:
+        multipleTriggers("../Videos/peanutbutter.mp4")
+
+    if "fish" in message:
+        multipleTriggers("../Videos/fish.mp4")
+
+    if "what the dog doing" in message:
+        multipleTriggers("../Videos/what.mp4")
+
+    if "salami lid" in message:
+        multipleTriggers("../Videos/lidsaa.mp4")
+
+    if "kill all" in message or len(videos) > 5:
         for image in images:
             image.destroy()
         for video in videos:
@@ -361,6 +380,7 @@ def playSound(author, message):
 
     if p != None:
         players.append(p)
+
 
 
 root = None
@@ -376,7 +396,7 @@ def setupTkinter():
     root.attributes('-fullscreen', True)
     root.attributes('-transparentcolor', 'purple')
     root.configure(bg='purple')
-    root.after(1, leaderboard)
+    #root.after(1, leaderboard)
 
 
 def flashImage(imagePath, duration=3, flip=False):
