@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added a leaderboard for gambling">
-      <change afterPath="$PROJECT_DIR$/Videos/butter.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/fish.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/lid.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/peanutbutter.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/rett.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/what.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added more sounds and a limit to the amount of videos on screen at once.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GrabChat.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GrabChat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1736373586271</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added more sounds and a limit to the amount of videos on screen at once.">
+      <created>1737008131582</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1737008131582</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -178,7 +176,8 @@
     <MESSAGE value="Added translation support. And 2 new sounds." />
     <MESSAGE value="fixed an added bug that stopped tk from opening a capturable window." />
     <MESSAGE value="Added a leaderboard for gambling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a leaderboard for gambling" />
+    <MESSAGE value="Added more sounds and a limit to the amount of videos on screen at once." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more sounds and a limit to the amount of videos on screen at once." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

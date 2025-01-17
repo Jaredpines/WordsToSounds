@@ -366,7 +366,7 @@ def playSound(author, message):
         multipleTriggers("../Videos/what.mp4")
 
     if "salami lid" in message:
-        multipleTriggers("../Videos/lidsaa.mp4")
+        multipleTriggers("../Videos/lid.mp4")
 
     if "kill all" in message or len(videos) > 5:
         for image in images:
