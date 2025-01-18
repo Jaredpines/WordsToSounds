@@ -7,7 +7,7 @@ from src.PlaySound import playSound
 recognizer = sr.Recognizer()
 
 def voiceRecognition():
-    with sr.Microphone() as source:
+    with sr.Microphone(1) as source:
         print("Adjusting for ambient noise... Please wait.")
         recognizer.adjust_for_ambient_noise(source, duration=1)
 

@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added more sounds and a limit to the amount of videos on screen at once.">
+      <change afterPath="$PROJECT_DIR$/Videos/bird.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/boom.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/meow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/table.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/water.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/yellow.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/yippee.mp4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VoiceRecognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoiceRecognition.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1737008131582</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added more sounds and a limit to the amount of videos on screen at once.">
+      <created>1737088342770</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737088342770</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -184,7 +200,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/PlaySound.py</url>
-          <line>628</line>
+          <line>651</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

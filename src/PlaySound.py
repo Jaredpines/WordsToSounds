@@ -105,9 +105,13 @@ def playSound(author, message):
 
     if "gamese39yippee" in message or "yippee" in message:
         count = message.count("yippee") + message.count("gamese39yippee")
-        for _ in range(count):
-            p = vlc.MediaPlayer("../Sounds/yippee.mp3")
-            p.play()
+        rand = random.randint(0, 1)
+        if rand == 0:
+            for _ in range(count):
+                p = vlc.MediaPlayer("../Sounds/yippee.mp3")
+                p.play()
+        else:
+            multipleTriggers("../Videos/yippee.mp4")
 
     if "door" in message:
         p = vlc.MediaPlayer("../Sounds/door.mp3")
@@ -367,6 +371,25 @@ def playSound(author, message):
 
     if "salami lid" in message:
         multipleTriggers("../Videos/lid.mp4")
+
+
+    if "bird up" in message:
+        multipleTriggers("../Videos/bird.mp4")
+
+    if "boom" in message:
+        multipleTriggers("../Videos/boom.mp4")
+
+    if "yellow" in message:
+        multipleTriggers("../Videos/yellow.mp4")
+
+    if "our table" in message:
+        multipleTriggers("../Videos/table.mp4")
+
+    if "meow" in message:
+        multipleTriggers("../Videos/meow.mp4")
+
+    if "water" in message:
+        multipleTriggers("../Videos/water.mp4")
 
     if "kill all" in message or len(videos) > 5:
         for image in images:
