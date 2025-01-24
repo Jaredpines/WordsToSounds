@@ -1,4 +1,5 @@
 import asyncio
+import json
 import os
 import re
 import time
@@ -24,6 +25,7 @@ ss = 1
 win = False
 groan = 0
 jeff = 0
+maxPoints = 50
 
 
 # def translateToEnglish(text):
@@ -55,7 +57,7 @@ jeff = 0
 def playSound(author, message):
     today = datetime.today()
     p = None
-    global players, content, ss, win, groan, videos, jeff
+    global players, content, ss, win, groan, videos, jeff, maxPoints, stockPrices
     # message = translateToEnglish(message)
     message = message.lower()
     print(message)
@@ -315,18 +317,25 @@ def playSound(author, message):
     if "before" in message:
         multipleTriggers("../Videos/squid.mp4")
 
-    if "groan tube" in message or "groantube" in message or "aaaaaeeeeeuuuuu" in message or "uuuuueeeeeaaaaa" in message:
+    if "grown tube" in message or "growntube" in message or "groan tube" in message or "groantube" in message or "aaaaaeeeeeuuuuu" in message or "uuuuueeeeeaaaaa" in message:
+        groan = random.randint(0, 1)
         if groan == 0:
-            groan = 1
             p = vlc.MediaPlayer("../Sounds/groanUp.mp3")
             p.play()
+            increasePrice(stockPrices, maxPoints)
         else:
-            groan = 0
             p = vlc.MediaPlayer("../Sounds/groanDown.mp3")
             p.play()
+            decreasePrice(stockPrices, maxPoints)
 
     if "jerma" in message:
         multipleTriggers("../Videos/jerma.mp4")
+
+    if "glorp" in message:
+        multipleTriggers("../Videos/glorp.mp4")
+
+    if "huh" in message:
+        multipleTriggers("../Videos/huh.mp4")
 
     if "donate" in message or "donation" in message or "donating" in message or "give me your money" in message:
         count = message.count("donate") + message.count("donation") + message.count("donating") + message.count("give me your money")
@@ -364,7 +373,11 @@ def playSound(author, message):
         multipleTriggers("../Videos/peanutbutter.mp4")
 
     if "fish" in message:
-        multipleTriggers("../Videos/fish.mp4")
+        rand = random.randint(1, 8)
+        if rand < 8:
+            multipleTriggers("../Videos/fish.mp4")
+        else:
+            multipleTriggers("../Videos/fish2.mp4")
 
     if "what the dog doing" in message:
         multipleTriggers("../Videos/what.mp4")
@@ -380,7 +393,9 @@ def playSound(author, message):
         multipleTriggers("../Videos/boom.mp4")
 
     if "yellow" in message:
-        multipleTriggers("../Videos/yellow.mp4")
+        count = message.count("yellow")
+        for _ in range(count):
+            multipleTriggers("../Videos/yellow.mp4")
 
     if "our table" in message:
         multipleTriggers("../Videos/table.mp4")
@@ -391,7 +406,10 @@ def playSound(author, message):
     if "water" in message:
         multipleTriggers("../Videos/water.mp4")
 
-    if "kill all" in message or len(videos) > 5:
+    if "mr. beast" in message or "mr beast" in message or "mrbeast" in message:
+        multipleTriggers("../Videos/beast.mp4")
+
+    if "kill all" in message or (len(videos) > 5 and "yellow" not in message):
         for image in images:
             image.destroy()
         for video in videos:
@@ -419,7 +437,8 @@ def setupTkinter():
     root.attributes('-fullscreen', True)
     root.attributes('-transparentcolor', 'purple')
     root.configure(bg='purple')
-    #root.after(1, leaderboard)
+    root.after(1, leaderboard)
+    root.after(1, groanTubeEconomy)
 
 
 def flashImage(imagePath, duration=3, flip=False):
@@ -695,6 +714,7 @@ def leaderboard():
     canvas.place(x=xPos, y=yPos)
 
 
+
 def addLineOfText(canvas, lineText, lineCount):
     textItem = canvas.create_text(0, 0, text=lineText.strip(), font=('Helvetica', 16), fill="Black", anchor="w")
 
@@ -707,3 +727,84 @@ def addLineOfText(canvas, lineText, lineCount):
 
     # Place the text at a vertical position based on the lineCount
     canvas.coords(textItem, 10, textHeight * lineCount)  # 10px padding from the left
+
+def drawGraph(canvas, stockPrices, graphWidth, graphHeight, margin, maxPoints, lineColor):
+    """Draws the stock market graph."""
+    canvas.delete("all")
+
+    # Draw axes
+    canvas.create_line(margin, margin, margin, graphHeight - margin, width=2)
+    canvas.create_line(margin, graphHeight - margin, graphWidth - margin, graphHeight - margin, width=2)
+
+    # Draw the line for stock prices
+    for i in range(1, len(stockPrices)):
+        x1 = margin + (i - 1) * (graphWidth - 2 * margin) / maxPoints
+        y1 = graphHeight - margin - stockPrices[i - 1]
+        x2 = margin + i * (graphWidth - 2 * margin) / maxPoints
+        y2 = graphHeight - margin - stockPrices[i]
+        canvas.create_line(x1, y1, x2, y2, fill=lineColor, width=2)
+
+def animateGraph(root, canvas, stockPrices, graphWidth, graphHeight, margin, maxPoints, lineColor, updateInterval):
+    """Keeps the graph static for now."""
+    # Redraw the graph without changing prices
+    drawGraph(canvas, stockPrices, graphWidth, graphHeight, margin, maxPoints, lineColor)
+
+    # Schedule the next update
+    root.after(updateInterval, animateGraph, root, canvas, stockPrices, graphWidth, graphHeight, margin, maxPoints, lineColor, updateInterval)
+def increasePrice(stockPrices, maxPoints):
+    """Increases the price by a fixed amount."""
+    rand = random.randint(1, 1000)
+    lastPrice = stockPrices[-1]
+    newPrice = lastPrice + rand  # Increase by 10 units
+    stockPrices.pop(0)
+    stockPrices.append(newPrice)
+
+def decreasePrice(stockPrices, maxPoints):
+    """Decreases the price by a fixed amount."""
+    rand = random.randint(1, 1000)
+    lastPrice = stockPrices[-1]
+    newPrice = lastPrice - rand  # Decrease by 10 units, but not below 0
+    stockPrices.pop(0)
+    stockPrices.append(newPrice)
+
+def savePrices(stockPrices, filename="stock_prices.json"):
+    """Saves stock prices to a file."""
+    with open(filename, "w") as file:
+        json.dump(stockPrices, file)
+
+def loadPrices(maxPoints, filename="stock_prices.json"):
+    """Loads stock prices from a file or initializes them."""
+    if os.path.exists(filename):
+        with open(filename, "r") as file:
+            return json.load(file)
+    return [0] * maxPoints
+
+def periodicSave(stockPrices, interval, filename="stock_prices.json"):
+    """Saves the stock prices periodically."""
+    savePrices(stockPrices, filename)
+    root.after(interval, periodicSave, stockPrices, interval, filename)
+
+stockPrices = loadPrices(maxPoints)
+
+def groanTubeEconomy():
+    global root, stockPrices, maxPoints
+    graphWidth = 400
+    graphHeight = 300
+    canvas = tk.Canvas(root, width=graphWidth, height=graphHeight, background="#010203", bd=0, highlightthickness=0)
+    colorkey = 0x00030201
+    hwnd = canvas.winfo_id()
+    wnd_exstyle = windll.user32.GetWindowLongA(hwnd, -20)  # GWL_EXSTYLE
+    new_exstyle = wnd_exstyle | 0x00080000  # WS_EX_LAYERED
+    windll.user32.SetWindowLongA(hwnd, -20, new_exstyle)  # GWL_EXSTYLE
+    windll.user32.SetLayeredWindowAttributes(hwnd, colorkey, 255, 0x00000001)
+    canvas.place(x=root.winfo_screenwidth() - (graphWidth*2), y=root.winfo_screenheight() - graphHeight)
+
+
+    margin = 50
+    updateInterval = 100  # Milliseconds
+    lineColor = "green"
+    saveInterval = 5000
+
+    animateGraph(root, canvas, stockPrices, graphWidth, graphHeight, margin, maxPoints, lineColor, updateInterval)
+
+    periodicSave(stockPrices, saveInterval)
