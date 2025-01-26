@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added more videos that people and I wanted">
-      <change afterPath="$PROJECT_DIR$/Videos/beast.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/fish2.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/glorp.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/huh.mp4" afterDir="false" />
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added a groan tube economy">
+      <change afterPath="$PROJECT_DIR$/Videos/hawaii.mp4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VoiceRecognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoiceRecognition.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1737182213075</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added a groan tube economy">
+      <created>1737701723545</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1737701723545</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -198,14 +201,15 @@
     <MESSAGE value="Added a leaderboard for gambling" />
     <MESSAGE value="Added more sounds and a limit to the amount of videos on screen at once." />
     <MESSAGE value="Added more videos that people and I wanted" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more videos that people and I wanted" />
+    <MESSAGE value="Added a groan tube economy" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a groan tube economy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/PlaySound.py</url>
-          <line>670</line>
+          <line>673</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

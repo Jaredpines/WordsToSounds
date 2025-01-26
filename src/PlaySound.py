@@ -392,6 +392,9 @@ def playSound(author, message):
     if "boom" in message:
         multipleTriggers("../Videos/boom.mp4")
 
+    if "hawaii" in message:
+        multipleTriggers("../Videos/hawaii.mp4")
+
     if "yellow" in message:
         count = message.count("yellow")
         for _ in range(count):
