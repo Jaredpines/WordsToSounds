@@ -116,7 +116,7 @@ async def main():
     youtube_handler = YouTubeChatHandler(playSound)
     setupTkinter()
     threading.Thread(target=runTkinter, daemon=True).start()
-    threading.Thread(target=voiceRecognition, daemon=True).start()
+    #threading.Thread(target=voiceRecognition, daemon=True).start()
     # Run both handlers concurrently
     await asyncio.gather(
         #youtube_handler.start(),

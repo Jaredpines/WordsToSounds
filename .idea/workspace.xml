@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added hawaii as a sound">
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added a groan tube economy">
+      <change afterPath="$PROJECT_DIR$/Videos/fivebooms.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GamblingLeaderBoard.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GroanTubeEconomy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/VideoAndImage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/WalkingPikmin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GrabChat.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GrabChat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -35,17 +42,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.GrabChat.executor&quot;: &quot;Run&quot;,
-    &quot;Python.PlaySound.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/pines/PycharmProjects/WordsToSounds/Sounds&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.GrabChat.executor": "Run",
+    "Python.PlaySound.executor": "Run",
+    "Python.VideoAndImage.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/pines/PycharmProjects/WordsToSounds/Sounds",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Sounds" />
@@ -164,14 +172,7 @@
       <option name="project" value="LOCAL" />
       <updated>1737701723545</updated>
     </task>
-    <task id="LOCAL-00013" summary="Added hawaii as a sound">
-      <created>1737876727288</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1737876727288</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -208,17 +209,11 @@
     <MESSAGE value="Added more sounds and a limit to the amount of videos on screen at once." />
     <MESSAGE value="Added more videos that people and I wanted" />
     <MESSAGE value="Added a groan tube economy" />
-    <MESSAGE value="Added hawaii as a sound" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added hawaii as a sound" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a groan tube economy" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/PlaySound.py</url>
-          <line>676</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/VoiceRecognition.py</url>
           <option name="timeStamp" value="3" />

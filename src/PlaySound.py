@@ -1,6 +1,3 @@
-import asyncio
-import json
-import os
 import re
 import time
 from datetime import datetime
@@ -13,6 +10,11 @@ import random
 import cv2
 from ctypes import windll
 
+from src.GamblingLeaderBoard import *
+from src.GroanTubeEconomy import *
+from src.VideoAndImage import *
+from src.WalkingPikmin import *
+
 POLLINGINTERVAL = 5
 # translator = Translator()
 excludedNames = {"Tio", "Gio"}
@@ -20,12 +22,9 @@ today = datetime.today()
 christmasTimeStart = datetime(today.year, 12, 18)
 christmasTimeEnd = datetime(today.year + 1, 1, 1)
 jan = datetime(today.year, 1, 1)
-content = 1
-ss = 1
 win = False
 groan = 0
 jeff = 0
-maxPoints = 50
 
 
 # def translateToEnglish(text):
@@ -62,7 +61,7 @@ def playSound(author, message):
     message = message.lower()
     print(message)
 
-    if jeff > 0 and len(videos) <= 1:
+    if jeff > 0:
         jeff = 0
 
 
@@ -80,7 +79,7 @@ def playSound(author, message):
         p.play()
 
     if "butter dog" in message or "butterdog" in message or "🧈🐶" in message:
-        multipleTriggers("../Videos/butter.mp4")
+        multipleTriggers("../Videos/butter.mp4", root)
 
     if "gamese39omg" in message or "omg" in message:
         p = vlc.MediaPlayer("../Sounds/omg.mp3")
@@ -90,19 +89,19 @@ def playSound(author, message):
         rand = random.randint(0, 4)
         if rand == 0:
             p = vlc.MediaPlayer("../Sounds/pikmin.mp3")
-            pikmin()
+            pikmin(root)
         elif rand == 1:
             p = vlc.MediaPlayer("../Sounds/pikmindeath.mp3")
-            multipleTriggers("../Images/pikminy.gif", duration=2)
+            multipleTriggers("../Images/pikminy.gif", root, duration=2)
         elif rand == 2:
             p = vlc.MediaPlayer("../Sounds/pikminfall.mp3")
-            multipleTriggers("../Images/pikminy.gif", duration=2)
+            multipleTriggers("../Images/pikminy.gif", root, duration=2)
         elif rand == 3:
             p = vlc.MediaPlayer("../Sounds/pikminpluck.mp3")
-            pikmin()
+            pikmin(root)
         elif rand == 4:
             p = vlc.MediaPlayer("../Sounds/pikminthrow.mp3")
-            multipleTriggers("../Images/pikminy.gif", duration=2)
+            multipleTriggers("../Images/pikminy.gif", root, duration=2)
         p.play()
 
     if "gamese39yippee" in message or "yippee" in message:
@@ -113,7 +112,7 @@ def playSound(author, message):
                 p = vlc.MediaPlayer("../Sounds/yippee.mp3")
                 p.play()
         else:
-            multipleTriggers("../Videos/yippee.mp4")
+            multipleTriggers("../Videos/yippee.mp4", root)
 
     if "door" in message:
         p = vlc.MediaPlayer("../Sounds/door.mp3")
@@ -130,10 +129,10 @@ def playSound(author, message):
     if "gambling" in message:
         rand = random.randint(1, 10)
         if 0 < rand < 10:
-            multipleTriggers("../Videos/gamblinglose.mp4")
+            multipleTriggers("../Videos/gamblinglose.mp4", root)
             win = False
         else:
-            multipleTriggers("../Videos/gamblingwin.mp4")
+            multipleTriggers("../Videos/gamblingwin.mp4", root)
             win = True
 
         inputOutputFilePath = "../Leaderboard/saves.txt"
@@ -170,7 +169,7 @@ def playSound(author, message):
             print(f"File not found: {inputOutputFilePath}")
         except Exception as e:
             print(f"An error occurred: {e}")
-        leaderboard()
+        leaderboard(root)
     if "fnaf" in message or "five night's at freddy's" in message or "five nights at freddys" in message \
             or "freddy" in message or "animatronic" in message or "foxy" in message or "bonnie" in message \
             or "chica" in message or "baby" in message or "ennard" in message or "springtrap" in message \
@@ -185,28 +184,30 @@ def playSound(author, message):
             or "nedd bear" in message or "orville elephant" in message or "mystic hippo" in message \
             or "monty" in message or "montgomery gator" in message or "roxxy" in message or "roxanne wolf" in message \
             or "endo" in message or "the mimic" in message or "tangle" in message or "helpy" in message:
-        rand = random.randint(1, 8)
+        rand = random.randint(1, 9)
         if rand == 1:
-            multipleTriggers("../Videos/fnaf1.mp4")
+            multipleTriggers("../Videos/fnaf1.mp4", root)
         elif rand == 2:
-            multipleTriggers("../Videos/fnaf2.mp4")
+            multipleTriggers("../Videos/fnaf2.mp4", root)
         elif rand == 3:
             multipleTriggers("../Videos/fnaf3.mp4", duration=8)
         elif rand == 4:
-            multipleTriggers("../Videos/fnaf4.mp4")
+            multipleTriggers("../Videos/fnaf4.mp4", root)
         elif rand == 5:
-            multipleTriggers("../Videos/fnaf5.mp4")
+            multipleTriggers("../Videos/fnaf5.mp4", root)
         elif rand == 6:
-            multipleTriggers("../Videos/fnaf6.mp4")
+            multipleTriggers("../Videos/fnaf6.mp4", root)
         elif rand == 7:
-            multipleTriggers("../Videos/fnafs.mp4")
+            multipleTriggers("../Videos/fnafs.mp4", root)
         elif rand == 8:
-            multipleTriggers("../Videos/fnafj.mp4")
+            multipleTriggers("../Videos/fnafj.mp4", root)
+        elif rand == 9:
+            multipleTriggers("../Videos/fivebooms.mp4", root)
 
     if "one piece" in message or "onepiece" in message:
         p = vlc.MediaPlayer("../Sounds/onepiece.mp3")
         p.play()
-        multipleTriggers("../Images/onepiece.gif", duration=12)
+        multipleTriggers("../Images/onepiece.gif", root, duration=12)
 
     if "sorry" in message or "sowwy" in message or "gamese39sowwy" in message:
         p = vlc.MediaPlayer("../Sounds/sad.mp3")
@@ -288,34 +289,29 @@ def playSound(author, message):
 
     if christmasTimeStart <= today <= christmasTimeEnd:
         if "christmas" in message:
-            multipleTriggers("../Videos/christmas.mp4")
+            multipleTriggers("../Videos/christmas.mp4", root)
 
     if "freeze" in message:
-        multipleTriggers("../Videos/freeze.mp4")
+        multipleTriggers("../Videos/freeze.mp4", root)
 
     if "soccer" in message:
         count = message.count("soccer")
         for _ in range(count):
-            multipleTriggers("../Videos/soccer.mp4", duration=12)
+            multipleTriggers("../Videos/soccer.mp4", root, duration=12)
 
     if "jeff" in message and jeff == 0:
-        multipleTriggers("../Videos/jeff.mp4")
+        multipleTriggers("../Videos/jeff.mp4", root)
         jeff += 1
 
-    if "content" in message and content == 1:
-        content -= 1
-
-        p = vlc.MediaPlayer("../Sounds/silent.mp3")
-        p.play()
-    elif "content" in message and content != 1:
-        p.stop()
+    if "content" in message:
+        multipleTriggers("../Videos/beast.mp4", root)
 
     if "subway surfers" in message and ss == 1:
         ss -= 1
-        multipleTriggers("../Videos/subway.mp4")
+        multipleTriggers("../Videos/subway.mp4", root)
 
     if "before" in message:
-        multipleTriggers("../Videos/squid.mp4")
+        multipleTriggers("../Videos/squid.mp4", root)
 
     if "grown tube" in message or "growntube" in message or "groan tube" in message or "groantube" in message or "aaaaaeeeeeuuuuu" in message or "uuuuueeeeeaaaaa" in message:
         groan = random.randint(0, 1)
@@ -329,111 +325,80 @@ def playSound(author, message):
             decreasePrice(stockPrices, maxPoints)
 
     if "jerma" in message:
-        multipleTriggers("../Videos/jerma.mp4")
+        multipleTriggers("../Videos/jerma.mp4", root)
 
     if "glorp" in message:
-        multipleTriggers("../Videos/glorp.mp4")
+        multipleTriggers("../Videos/glorp.mp4", root)
 
     if "huh" in message:
-        multipleTriggers("../Videos/huh.mp4")
+        multipleTriggers("../Videos/huh.mp4", root)
 
     if "donate" in message or "donation" in message or "donating" in message or "give me your money" in message:
         count = message.count("donate") + message.count("donation") + message.count("donating") + message.count("give me your money")
         for _ in range(count):
-            multipleTriggers("../Videos/give.mp4")
+            multipleTriggers("../Videos/give.mp4", root)
 
     if "i'm dead" in message:
-        multipleTriggers("../Videos/imdead.mp4")
+        multipleTriggers("../Videos/imdead.mp4", root)
 
     if "flashbang" in message or "flash bang" in message:
         count = message.count("flashbang") + message.count("flash bang")
         for _ in range(count):
-            multipleTriggers("../Videos/thinkfast.mp4")
-
-    if "happy new year" in message:
-        multipleTriggers("../Videos/jeff.mp4")
-        multipleTriggers("../Videos/soccer.mp4", duration=12)
-        multipleTriggers("../Videos/freeze.mp4")
-        multipleTriggers("../Videos/christmas.mp4")
-        multipleTriggers("../Videos/gamblinglose.mp4")
-        multipleTriggers("../Videos/gamblingwin.mp4")
-        multipleTriggers("../Videos/fnaf1.mp4")
-        multipleTriggers("../Videos/fnaf2.mp4")
-        multipleTriggers("../Videos/fnaf3.mp4")
-        multipleTriggers("../Videos/fnaf4.mp4")
-        multipleTriggers("../Videos/fnaf5.mp4")
-        multipleTriggers("../Videos/fnaf6.mp4")
-        multipleTriggers("../Videos/fnafs.mp4")
-        multipleTriggers("../Videos/fnafj.mp4")
+            multipleTriggers("../Videos/thinkfast.mp4", root)
 
     if "some of this on your that" in message:
-        multipleTriggers("../Videos/rett.mp4")
+        multipleTriggers("../Videos/rett.mp4", root)
 
     if "peanut butter and jelly the long way" in message:
-        multipleTriggers("../Videos/peanutbutter.mp4")
+        multipleTriggers("../Videos/peanutbutter.mp4", root)
 
     if "fish" in message:
         rand = random.randint(1, 8)
         if rand < 8:
-            multipleTriggers("../Videos/fish.mp4")
+            multipleTriggers("../Videos/fish.mp4", root)
         else:
-            multipleTriggers("../Videos/fish2.mp4")
+            multipleTriggers("../Videos/fish2.mp4", root)
 
     if "what the dog doing" in message:
-        multipleTriggers("../Videos/what.mp4")
+        multipleTriggers("../Videos/what.mp4", root)
 
     if "salami lid" in message:
-        multipleTriggers("../Videos/lid.mp4")
+        multipleTriggers("../Videos/lid.mp4", root)
 
 
     if "bird up" in message:
-        multipleTriggers("../Videos/bird.mp4")
+        multipleTriggers("../Videos/bird.mp4", root)
 
     if "boom" in message:
-        multipleTriggers("../Videos/boom.mp4")
+        multipleTriggers("../Videos/boom.mp4", root)
 
     if "hawaii" in message:
-        multipleTriggers("../Videos/hawaii.mp4")
+        multipleTriggers("../Videos/hawaii.mp4", root)
 
     if "yellow" in message:
         count = message.count("yellow")
         for _ in range(count):
-            multipleTriggers("../Videos/yellow.mp4")
+            multipleTriggers("../Videos/yellow.mp4", root)
 
     if "our table" in message:
-        multipleTriggers("../Videos/table.mp4")
+        multipleTriggers("../Videos/table.mp4", root)
 
     if "meow" in message:
-        multipleTriggers("../Videos/meow.mp4")
+        multipleTriggers("../Videos/meow.mp4", root)
 
     if "water" in message:
-        multipleTriggers("../Videos/water.mp4")
+        multipleTriggers("../Videos/water.mp4", root)
 
     if "say" in message:
-        multipleTriggers("../Videos/cheese.mp4", 12)
+        multipleTriggers("../Videos/cheese.mp4", root, 12)
 
     if "mr. beast" in message or "mr beast" in message or "mrbeast" in message:
-        multipleTriggers("../Videos/beast.mp4")
-
-    if "kill all" in message or (len(videos) > 5 and "yellow" not in message):
-        for image in images:
-            image.destroy()
-        for video in videos:
-            video.destroy()
-        for player in players:
-            player.stop()
-        ss = 1
-        content = 1
-
-    if p != None:
-        players.append(p)
+        multipleTriggers("../Videos/beast.mp4", root)
 
 
 
 root = None
-images = []
-videos = []
-players = []
+
 
 
 def setupTkinter():
@@ -443,141 +408,8 @@ def setupTkinter():
     root.attributes('-fullscreen', True)
     root.attributes('-transparentcolor', 'purple')
     root.configure(bg='purple')
-    root.after(1, leaderboard)
-    root.after(1, groanTubeEconomy)
-
-
-def flashImage(imagePath, duration=3, flip=False):
-    """Flash an image on the screen."""
-    global root, images
-    if root is None:
-        raise RuntimeError("Tkinter root is not initialized. Call setupTkinter first.")
-
-    # Load the image
-    image = Image.open(imagePath)
-    imageWidth, imageHeight = image.size
-    screenWidth = root.winfo_screenwidth()
-    screenHeight = root.winfo_screenheight()
-
-    # Random position on screen
-    xPos = random.randint(0, screenWidth - imageWidth)
-    yPos = random.randint(0, screenHeight - imageHeight)
-
-    # Create a label for the image
-    label = tk.Label(root, bg='purple')
-    if flip == False:
-        label.place(x=xPos, y=yPos)
-    else:
-        label.place(x=root.winfo_screenwidth() - imageWidth, y=0)
-
-    if ".gif" in imagePath and flip == False:
-        # Load frames for GIF
-        frames = []
-        try:
-            while True:
-                frames.append(ImageTk.PhotoImage(image.copy(), master=root))
-                image.seek(len(frames))
-        except EOFError:
-            pass
-
-        def updateFrame(index):
-            if label.winfo_exists():
-                try:
-                    label.config(image=frames[index])
-                    label.image = frames[index]  # Keep a reference to avoid garbage collection
-                    if index + 1 < len(frames):
-                        root.after(100, updateFrame, index + 1)
-                    else:
-                        root.after(100, updateFrame, 0)
-                except tk.TclError:
-                    pass
-
-        updateFrame(0)
-    elif ".gif" in imagePath and flip == True:
-        img = ImageTk.PhotoImage(image, master=root)
-        label.config(image=img)
-        label.image = img
-    else:
-        # Single frame image
-        img = ImageTk.PhotoImage(image, master=root)
-        label.config(image=img)
-        label.image = img  # Keep a reference
-
-    # Add the label to the active list and schedule its removal
-    images.append(label)
-    if flip == False:
-        root.after(int(duration * 1000), lambda: removeImage(label))
-
-
-def flashVideo(videoPath, duration=None):
-    """Flash an MP4 video with sound on the screen, playing for its entire length."""
-    global root, videos, players
-    if root is None:
-        raise RuntimeError("Tkinter root is not initialized. Call setupTkinter first.")
-
-    # Create a new VLC instance for playback
-    instance = vlc.Instance()
-    player = instance.media_player_new()
-    media = instance.media_new(videoPath)
-    player.set_media(media)
-    players.append(player)
-    player.audio_set_volume(100)
-    player.audio_set_mute(False)
-    cap = cv2.VideoCapture(videoPath)
-    videoWidth = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-    videoHeight = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    cap.release()
-
-    # Scale video dimensions to fit within maxWidth and maxHeight
-    scale = min(640 / videoWidth, 360 / videoHeight)  # default max size 640x360
-    scaledWidth = int(videoWidth * scale)
-    scaledHeight = int(videoHeight * scale)
-
-    # Random position on the screen
-    screenWidth = root.winfo_screenwidth()
-    screenHeight = root.winfo_screenheight()
-    xPos = random.randint(0, screenWidth - scaledWidth)
-    yPos = random.randint(0, screenHeight - scaledHeight)
-    if "subway" in videoPath:
-        xPos = 0
-        yPos = 0
-    # Create a canvas for the video
-    canvas = tk.Canvas(root, width=scaledWidth, height=scaledHeight, bg='purple', highlightthickness=0)
-    canvas.place(x=xPos, y=yPos)
-
-    # Set the VLC video output to the canvas
-    hwnd = canvas.winfo_id()  # Windows handle ID
-    player.set_hwnd(hwnd)
-
-    # Start playback
-    player.play()
-
-    time.sleep(1)
-
-    # Get the video duration in seconds
-    videoDuration = player.get_length() / 1000  # VLC gives duration in milliseconds
-
-    # If the video duration is not provided, use the video’s actual length
-    if not duration:
-        duration = videoDuration
-
-    # Schedule the video stop based on the video's actual length
-    def stopVideo():
-        player.stop()
-        canvas.destroy()
-        videos.remove(canvas)
-
-    root.after(int(duration * 940), stopVideo)
-
-    videos.append(canvas)
-
-
-def removeImage(label):
-    """Remove an image from the screen."""
-    global images
-    if label in images and label.winfo_exists():
-        label.destroy()
-        images.remove(label)
+    root.after(100, leaderboard, root)
+    root.after(100, groanTubeEconomy, root)
 
 
 def runTkinter():
@@ -587,230 +419,7 @@ def runTkinter():
     root.mainloop()
 
 
-def multipleTriggers(mediaPath, duration=None):
-    if mediaPath.endswith(".mp4"):
-        threading.Thread(target=flashVideo, args=(mediaPath, duration), daemon=True).start()
-    else:
-        threading.Thread(target=flashImage, args=(mediaPath, duration), daemon=True).start()
-
-
-def pikmin():
-    global root, images
-    screenWidth = root.winfo_screenwidth()
-    screenHeight = root.winfo_screenheight()
-    windowWidth = 150
-    windowHeight = 185
-
-    # Create a canvas for each Pikmin
-    canvas = tk.Canvas(root, width=windowWidth, height=windowHeight, bd=0, highlightthickness=0, bg="#010203")
-    colorkey = 0x00030201
-    hwnd = canvas.winfo_id()
-    wnd_exstyle = windll.user32.GetWindowLongA(hwnd, -20)  # GWL_EXSTYLE
-    new_exstyle = wnd_exstyle | 0x00080000  # WS_EX_LAYERED
-    windll.user32.SetWindowLongA(hwnd, -20, new_exstyle)  # GWL_EXSTYLE
-    windll.user32.SetLayeredWindowAttributes(hwnd, colorkey, 255, 0x00000001)
-    canvas.place(x=screenWidth - windowWidth, y=screenHeight - windowHeight)
-
-    # Open the GIF
-    rand = random.randint(0, 2)
-    if rand == 0:
-        image = Image.open("../Images/pikminwalk.gif")
-    elif rand == 1:
-        image = Image.open("../Images/pikminwalkb.gif")
-    elif rand == 2:
-        image = Image.open("../Images/pikminwalky.gif")
-
-    # Set the desired size for the image
-    desiredWidth = 150
-    desiredHeight = 200
-
-    frames = []
-    flippedFrames = []
-    try:
-        while True:
-            # Resize and store original frames
-            resizedFrame = image.copy().resize((desiredWidth, desiredHeight))
-            frames.append(ImageTk.PhotoImage(resizedFrame, master=root))
-
-            # Create flipped frames
-            flippedFrame = resizedFrame.transpose(Image.FLIP_LEFT_RIGHT)
-            flippedFrames.append(ImageTk.PhotoImage(flippedFrame, master=root))
-
-            image.seek(len(frames))
-    except EOFError:
-        pass
-
-    currentFrames = frames  # Start with original frames
-
-    frameId = canvas.create_image(0, 0, image=frames[0], anchor='nw')
-
-    def updateFrame(index):
-        if canvas.winfo_exists():
-            try:
-                canvas.itemconfig(frameId, image=currentFrames[index])
-                if index + 1 < len(currentFrames):
-                    root.after(100, updateFrame, index + 1)
-                else:
-                    root.after(100, updateFrame, 0)
-            except tk.TclError:
-                pass
-
-    updateFrame(0)
-    images.append(canvas)
-
-    dx = 5
-    direction = -1
-    startX = screenWidth - windowWidth
-
-    def move():
-        nonlocal startX, direction, currentFrames
-        if canvas.winfo_exists():
-            # Update position
-            startX += dx * direction
-            canvas.place(x=startX, y=screenHeight - windowHeight)
-
-            # Reverse direction and flip frames at screen edges
-            if startX <= 0:
-                direction = 1
-                currentFrames = flippedFrames
-            elif startX >= (screenWidth - desiredWidth):
-                direction = -1
-                currentFrames = frames
-
-            # Schedule next move
-            root.after(50, move)
-
-    move()
-
-canvass = []
-def leaderboard():
-    global root
-    windowWidth = 250
-    windowHeight = 285
-    xPos = 0
-    yPos = 0
-    canvas = tk.Canvas(root, width=windowWidth, height=windowHeight, background="#010203", bd=0, highlightthickness=0)
-    canvass.append(canvas)
-    colorkey = 0x00030201
-    hwnd = canvas.winfo_id()
-    wnd_exstyle = windll.user32.GetWindowLongA(hwnd, -20)  # GWL_EXSTYLE
-    new_exstyle = wnd_exstyle | 0x00080000  # WS_EX_LAYERED
-    windll.user32.SetWindowLongA(hwnd, -20, new_exstyle)  # GWL_EXSTYLE
-    windll.user32.SetLayeredWindowAttributes(hwnd, colorkey, 255, 0x00000001)
-    text = canvas.create_text(0, 0, text="Gambling Leaderboard", font=('Helvetica', 20), fill="Black", anchor="center")
-    if len(canvass) > 1:
-        canvass.pop(0).delete("all")
-    bbox = canvas.bbox(text)  # Returns (x1, y1, x2, y2)
-    textWidth = bbox[2] - bbox[0]
-    textHeight = bbox[3] - bbox[1]
-    canvas.config(width=textWidth, height=textHeight)
-    canvas.coords(text, textWidth / 2, textHeight / 2)
-    inputOutputFilePath = "../Leaderboard/saves.txt"
-    try:
-        with open(inputOutputFilePath, 'r', encoding='utf-8') as inoutfile:
-            lineCount = 2
-            for line in inoutfile:
-                addLineOfText(canvas, line,lineCount)
-                lineCount += 1
-    except FileNotFoundError:
-        print(f"File not found: {inputOutputFilePath}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
-    canvas.place(x=xPos, y=yPos)
 
 
 
-def addLineOfText(canvas, lineText, lineCount):
-    textItem = canvas.create_text(0, 0, text=lineText.strip(), font=('Helvetica', 16), fill="Black", anchor="w")
 
-    # Get bounding box of the new text line
-    bbox = canvas.bbox(textItem)
-    textHeight = bbox[3] - bbox[1]
-
-    # Resize the canvas height to fit all the text lines
-    canvas.config(height=(textHeight * lineCount + 20))  # Add a little padding
-
-    # Place the text at a vertical position based on the lineCount
-    canvas.coords(textItem, 10, textHeight * lineCount)  # 10px padding from the left
-
-def drawGraph(canvas, stockPrices, graphWidth, graphHeight, margin, maxPoints, lineColor):
-    """Draws the stock market graph."""
-    canvas.delete("all")
-
-    # Draw axes
-    canvas.create_line(margin, margin, margin, graphHeight - margin, width=2)
-    canvas.create_line(margin, graphHeight - margin, graphWidth - margin, graphHeight - margin, width=2)
-
-    # Draw the line for stock prices
-    for i in range(1, len(stockPrices)):
-        x1 = margin + (i - 1) * (graphWidth - 2 * margin) / maxPoints
-        y1 = graphHeight - margin - stockPrices[i - 1]
-        x2 = margin + i * (graphWidth - 2 * margin) / maxPoints
-        y2 = graphHeight - margin - stockPrices[i]
-        canvas.create_line(x1, y1, x2, y2, fill=lineColor, width=2)
-
-def animateGraph(root, canvas, stockPrices, graphWidth, graphHeight, margin, maxPoints, lineColor, updateInterval):
-    """Keeps the graph static for now."""
-    # Redraw the graph without changing prices
-    drawGraph(canvas, stockPrices, graphWidth, graphHeight, margin, maxPoints, lineColor)
-
-    # Schedule the next update
-    root.after(updateInterval, animateGraph, root, canvas, stockPrices, graphWidth, graphHeight, margin, maxPoints, lineColor, updateInterval)
-def increasePrice(stockPrices, maxPoints):
-    """Increases the price by a fixed amount."""
-    rand = random.randint(1, 1000)
-    lastPrice = stockPrices[-1]
-    newPrice = lastPrice + rand  # Increase by 10 units
-    stockPrices.pop(0)
-    stockPrices.append(newPrice)
-
-def decreasePrice(stockPrices, maxPoints):
-    """Decreases the price by a fixed amount."""
-    rand = random.randint(1, 1000)
-    lastPrice = stockPrices[-1]
-    newPrice = lastPrice - rand  # Decrease by 10 units, but not below 0
-    stockPrices.pop(0)
-    stockPrices.append(newPrice)
-
-def savePrices(stockPrices, filename="stock_prices.json"):
-    """Saves stock prices to a file."""
-    with open(filename, "w") as file:
-        json.dump(stockPrices, file)
-
-def loadPrices(maxPoints, filename="stock_prices.json"):
-    """Loads stock prices from a file or initializes them."""
-    if os.path.exists(filename):
-        with open(filename, "r") as file:
-            return json.load(file)
-    return [0] * maxPoints
-
-def periodicSave(stockPrices, interval, filename="stock_prices.json"):
-    """Saves the stock prices periodically."""
-    savePrices(stockPrices, filename)
-    root.after(interval, periodicSave, stockPrices, interval, filename)
-
-stockPrices = loadPrices(maxPoints)
-
-def groanTubeEconomy():
-    global root, stockPrices, maxPoints
-    graphWidth = 400
-    graphHeight = 300
-    canvas = tk.Canvas(root, width=graphWidth, height=graphHeight, background="#010203", bd=0, highlightthickness=0)
-    colorkey = 0x00030201
-    hwnd = canvas.winfo_id()
-    wnd_exstyle = windll.user32.GetWindowLongA(hwnd, -20)  # GWL_EXSTYLE
-    new_exstyle = wnd_exstyle | 0x00080000  # WS_EX_LAYERED
-    windll.user32.SetWindowLongA(hwnd, -20, new_exstyle)  # GWL_EXSTYLE
-    windll.user32.SetLayeredWindowAttributes(hwnd, colorkey, 255, 0x00000001)
-    canvas.place(x=root.winfo_screenwidth() - (graphWidth*2), y=root.winfo_screenheight() - graphHeight)
-
-
-    margin = 50
-    updateInterval = 100  # Milliseconds
-    lineColor = "green"
-    saveInterval = 5000
-
-    animateGraph(root, canvas, stockPrices, graphWidth, graphHeight, margin, maxPoints, lineColor, updateInterval)
-
-    periodicSave(stockPrices, saveInterval)
