@@ -409,6 +409,9 @@ def playSound(author, message):
     if "water" in message:
         multipleTriggers("../Videos/water.mp4")
 
+    if "say" in message:
+        multipleTriggers("../Videos/cheese.mp4", 12)
+
     if "mr. beast" in message or "mr beast" in message or "mrbeast" in message:
         multipleTriggers("../Videos/beast.mp4")
 
