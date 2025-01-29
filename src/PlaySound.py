@@ -60,8 +60,8 @@ def playSound(author, message):
     # message = translateToEnglish(message)
     message = message.lower()
     print(message)
-
-    if jeff > 0:
+    if "jeff" in message and jeff > 0:
+        killAll()
         jeff = 0
 
 
@@ -395,6 +395,21 @@ def playSound(author, message):
     if "mr. beast" in message or "mr beast" in message or "mrbeast" in message:
         multipleTriggers("../Videos/beast.mp4", root)
 
+    if "erb" in message:
+        rand = random.randint(1, 6)
+        if rand < 6:
+            multipleTriggers("../Videos/fakeerb.mp4", root)
+        else:
+            multipleTriggers("../Videos/erb.mp4", root)
+
+    if "buzzer" in message:
+        multipleTriggers("../Videos/buzzer.mp4", root)
+
+    if "creature" in message:
+        multipleTriggers("../Videos/creature.mp4", root)
+
+    if "kill all" in message:
+        killAll()
 
 
 root = None

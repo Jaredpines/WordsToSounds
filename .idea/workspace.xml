@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added a groan tube economy">
-      <change afterPath="$PROJECT_DIR$/Videos/fivebooms.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GamblingLeaderBoard.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GroanTubeEconomy.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/VideoAndImage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WalkingPikmin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Split up the files so it wasn't just one file. Still need to clean up the code more though">
+      <change afterPath="$PROJECT_DIR$/Videos/buzzer.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/creature.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/erb.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Videos/fakeerb.mp4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GrabChat.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GrabChat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VideoAndImage.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoAndImage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737701723545</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Split up the files so it wasn't just one file. Still need to clean up the code more though">
+      <option name="closed" value="true" />
+      <created>1738020659045</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1738020659045</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -209,7 +215,8 @@
     <MESSAGE value="Added more sounds and a limit to the amount of videos on screen at once." />
     <MESSAGE value="Added more videos that people and I wanted" />
     <MESSAGE value="Added a groan tube economy" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a groan tube economy" />
+    <MESSAGE value="Split up the files so it wasn't just one file. Still need to clean up the code more though" />
+    <option name="LAST_COMMIT_MESSAGE" value="Split up the files so it wasn't just one file. Still need to clean up the code more though" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

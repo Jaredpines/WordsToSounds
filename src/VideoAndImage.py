@@ -135,7 +135,7 @@ def flashVideo(videoPath, duration=None):
         except:
             pass
 
-    root.after(int(duration * 940), stopVideo)
+    root.after(int(duration * 950), stopVideo)
 
     videos.append(canvas)
     if len(videos) > 5:
