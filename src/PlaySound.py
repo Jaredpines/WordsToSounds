@@ -354,6 +354,8 @@ def playSound(author, message):
 
     if "fish" in message:
         rand = random.randint(1, 8)
+        if "fish horror" in message:
+            rand = 9
         if rand < 8:
             multipleTriggers("../Videos/fish.mp4", root)
         else:
@@ -389,7 +391,7 @@ def playSound(author, message):
     if "water" in message:
         multipleTriggers("../Videos/water.mp4", root)
 
-    if "say" in message:
+    if "snack" in message:
         multipleTriggers("../Videos/cheese.mp4", root, 12)
 
     if "mr. beast" in message or "mr beast" in message or "mrbeast" in message:
