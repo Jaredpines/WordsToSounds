@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added hawaii as a sound">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added some more trigger words">
+      <change afterPath="$PROJECT_DIR$/Videos/mimic.mp4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
     </list>
@@ -172,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1737876727288</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added some more trigger words">
+      <created>1738354722401</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1738354722401</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -210,7 +217,8 @@
     <MESSAGE value="Added more videos that people and I wanted" />
     <MESSAGE value="Added a groan tube economy" />
     <MESSAGE value="Added hawaii as a sound" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added hawaii as a sound" />
+    <MESSAGE value="Added some more trigger words" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some more trigger words" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

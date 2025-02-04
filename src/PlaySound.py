@@ -190,7 +190,7 @@ def playSound(author, message):
         elif rand == 2:
             multipleTriggers("../Videos/fnaf2.mp4", root)
         elif rand == 3:
-            multipleTriggers("../Videos/fnaf3.mp4", duration=8)
+            multipleTriggers("../Videos/fnaf3.mp4", root, duration=8)
         elif rand == 4:
             multipleTriggers("../Videos/fnaf4.mp4", root)
         elif rand == 5:
@@ -304,7 +304,7 @@ def playSound(author, message):
         jeff += 1
 
     if "content" in message:
-        multipleTriggers("../Videos/beast.mp4", root)
+        multipleTriggers("../Videos/mimic.mp4", root)
 
     if "subway surfers" in message and ss == 1:
         ss -= 1
