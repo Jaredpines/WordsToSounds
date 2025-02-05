@@ -10,6 +10,7 @@ import random
 import cv2
 from ctypes import windll
 
+from src.Dog import *
 from src.GamblingLeaderBoard import *
 from src.GroanTubeEconomy import *
 from src.VideoAndImage import *
@@ -410,6 +411,30 @@ def playSound(author, message):
     if "creature" in message:
         multipleTriggers("../Videos/creature.mp4", root)
 
+    if "lsg is here" in message:
+        multipleTriggers("../Videos/challenger.mp4", root)
+
+    if "edwin" in message:
+        multipleTriggers("../Videos/edwin.mp4", root)
+
+    if "micola" in message:
+        multipleTriggers("../Videos/micola.mp4", root)
+
+    if "mom" in message:
+        multipleTriggers("../Videos/howler.mp4", root)
+
+    if "up" in message:
+        changeDirection("up", root)
+    elif "down" in message:
+        changeDirection("down", root)
+    elif "left" in message:
+        changeDirection("left", root)
+    elif "right" in message:
+        changeDirection("right", root)
+
+    if "move" in message:
+        changeMode("move", root)
+
     if "kill all" in message:
         killAll()
 
@@ -427,6 +452,7 @@ def setupTkinter():
     root.configure(bg='purple')
     root.after(100, leaderboard, root)
     root.after(100, groanTubeEconomy, root)
+    root.after(100, dog, root)
 
 
 def runTkinter():
