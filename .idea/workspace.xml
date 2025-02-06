@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Made the stock market fit the screen and added a few more sounds">
-      <change afterPath="$PROJECT_DIR$/Images/dIdleDown.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/dIdleLeft.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/dIdleRight.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/dIdleUp.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/dWalkDown.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/dWalkLeft.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/dWalkRight.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/dWalkUp.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/challenger.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/edwin.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/howler.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/micola.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Dog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VoiceRecognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoiceRecognition.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +40,7 @@
     "Python.Dog.executor": "Run",
     "Python.GrabChat.executor": "Run",
     "Python.PlaySound.executor": "Run",
+    "Python.VoiceRecognition.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -241,10 +228,6 @@
           <url>file://$PROJECT_DIR$/src/PlaySound.py</url>
           <line>468</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/VoiceRecognition.py</url>
-          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
