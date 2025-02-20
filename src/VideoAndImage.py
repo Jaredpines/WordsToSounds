@@ -29,6 +29,13 @@ def flashImage(imagePath, duration=3, flip=False):
 
     # Create a label for the image
     label = tk.Label(root, bg='purple')
+    if "petting" in imagePath:
+        xPos = 150
+        yPos = root.winfo_screenheight() - imageHeight -200
+        desiredWidth = 150
+        desiredHeight = 200
+
+
     if flip == False:
         label.place(x=xPos, y=yPos)
     else:
@@ -39,7 +46,11 @@ def flashImage(imagePath, duration=3, flip=False):
         frames = []
         try:
             while True:
-                frames.append(ImageTk.PhotoImage(image.copy(), master=root))
+                if "petting" in imagePath:
+                    frames.append(ImageTk.PhotoImage(image.copy().resize((desiredWidth, desiredHeight)), master=root))
+                else:
+                    frames.append(ImageTk.PhotoImage(image.copy(), master=root))
+
                 image.seek(len(frames))
         except EOFError:
             pass
@@ -153,10 +164,11 @@ def killAll():
     global images, videos, players
     for image in images:
         image.destroy()
-    for video in videos:
-        video.destroy()
     for player in players:
         player.stop()
+    for video in videos:
+        video.destroy()
+
 
     images = []
     videos = []

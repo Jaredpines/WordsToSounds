@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 
 images = []
 startX = 0
-startY = 900
+startY = 950
 mode = "idle"
 direct = "right"
 def dog(root):
@@ -43,11 +43,18 @@ def dog(root):
     elif direct == "down" and mode == "move":
         image = Image.open("../Images/dWalkDown.gif")
 
+    if mode == "backflip":
+        image = Image.open("../Images/backflip.gif")
+
+    if mode == "petting":
+        pImage = Image.open("../Images/petting.gif")
+
     # Set the desired size for the image
     desiredWidth = 150
     desiredHeight = 200
 
     frames = []
+    pFrames = []
     try:
         while True:
             # Resize and store original frames
@@ -56,25 +63,45 @@ def dog(root):
 
 
             image.seek(len(frames))
+            if mode == "petting":
+                pResizedFrame = pImage.copy().resize((desiredWidth//2, desiredHeight//2), Image.Resampling.NEAREST)
+                pFrames.append(ImageTk.PhotoImage(pResizedFrame.convert("RGBA"), master=root))
+
+                pImage.seek(len(frames))
     except EOFError:
         pass
 
     currentFrames = frames  # Start with original frames
-
     frameId = canvas.create_image(0, 0, image=frames[0], anchor='nw')
+    if mode == "petting":
+        currentPFrames = pFrames
+        pettingId = canvas.create_image(40, 60, image=pFrames[0], anchor='nw')
 
     def updateFrame(index):
         if canvas.winfo_exists():
             try:
                 canvas.itemconfig(frameId, image=currentFrames[index])
                 if index + 1 < len(currentFrames):
-                    root.after(300, updateFrame, index + 1)
+                    root.after(100, updateFrame, index + 1)
                 else:
-                    root.after(300, updateFrame, 0)
+                    root.after(100, updateFrame, 0)
+            except tk.TclError:
+                pass
+    def updatePFrame(index):
+        if canvas.winfo_exists():
+            try:
+                canvas.itemconfig(pettingId, image=currentPFrames[index])
+                if index + 1 < len(currentPFrames):
+                    root.after(100, updatePFrame, index + 1)
+                else:
+                    root.after(100, updatePFrame, 0)
             except tk.TclError:
                 pass
 
+
     updateFrame(0)
+    if mode == "petting":
+        updatePFrame(0)
     images.append(canvas)
 
     dx = 5
@@ -101,6 +128,8 @@ def dog(root):
     if mode == "move":
         move()
         root.after(1000, lambda: changeMode("idle", root))
+    elif mode == "backflip":
+        root.after(len(frames)*100, lambda: changeMode("idle", root))
 
 def changeDirection(dir, root):
     global direct, images

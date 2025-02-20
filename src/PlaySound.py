@@ -105,11 +105,11 @@ def playSound(author, message):
             multipleTriggers("../Images/pikminy.gif", root, duration=2)
         p.play()
 
-    if "gamese39yippee" in message or "yippee" in message:
-        count = message.count("yippee") + message.count("gamese39yippee")
+    if "gamese39yippee" in message or "yippee" in message or "yippie" in message:
+        count = message.count("yippee") + message.count("gamese39yippee")+ message.count("yippie")
         rand = random.randint(0, 1)
         if rand == 0:
-            for _ in range(count):
+            for _ in range(1,count):
                 p = vlc.MediaPlayer("../Sounds/yippee.mp3")
                 p.play()
         else:
@@ -398,7 +398,7 @@ def playSound(author, message):
     if "mr. beast" in message or "mr beast" in message or "mrbeast" in message:
         multipleTriggers("../Videos/beast.mp4", root)
 
-    if "erb" in message:
+    if "erb" in message and "leaderboard" not in message:
         rand = random.randint(1, 6)
         if rand < 6:
             multipleTriggers("../Videos/fakeerb.mp4", root)
@@ -417,10 +417,28 @@ def playSound(author, message):
     if "edwin" in message:
         multipleTriggers("../Videos/edwin.mp4", root)
 
+    if "i am" in message and author == "GameSelectLive":
+        multipleTriggers("../Videos/am.mp4", root)
+
+    if "david" in message:
+        multipleTriggers("../Videos/david.mp4", root)
+
     if "micola" in message:
         multipleTriggers("../Videos/micola.mp4", root)
 
-    if "mom" in message:
+    if "chuck e cheese" in message or "chuck-e-cheese" in message:
+        multipleTriggers("../Videos/chuck.mp4", root)
+
+    if "bogos binted" in message or "bogos vintage" in message or "boat goes binted" in message or "boat goes vintage" in message:
+        rand = random.randint(1, 3)
+        if rand == 1:
+            multipleTriggers("../Videos/bogo.mp4", root)
+        elif rand == 2:
+            multipleTriggers("../Videos/photos.mp4", root)
+        elif rand == 3:
+            multipleTriggers("../Videos/boat.mp4", root)
+
+    if re.search(rf"\bstep mom\b", message):
         multipleTriggers("../Videos/howler.mp4", root)
 
     if "up" in message:
@@ -434,6 +452,15 @@ def playSound(author, message):
 
     if "move" in message:
         changeMode("move", root)
+
+    if "do a backflip" in message:
+        changeMode("backflip", root)
+
+    if "pet dog" in message:
+        changeMode("petting", root)
+
+    if "good boy" in message:
+        multipleTriggers("../Images/petting.gif", root, duration=4)
 
     if "kill all" in message:
         killAll()
