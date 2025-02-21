@@ -3,7 +3,7 @@ import threading
 
 import nest_asyncio
 from dotenv import load_dotenv
-from twitchio.ext import commands
+from twitchio.ext import commands, pubsub
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -22,16 +22,33 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]
 class TwitchBot(commands.Bot):
     load_dotenv()
     def __init__(self, callback):
-        super().__init__(token=os.getenv("TOKEN"), prefix='!', initial_channels=[os.getenv("CHANNEL"),])
+        super().__init__(token=os.getenv("TOKEN"), prefix='!', initial_channels=[os.getenv("CHANNEL")])
         self.callback = callback
+        self.pubsub = pubsub.PubSubPool(self)
+        self.users_oauth_token = os.getenv("TOKEN")  # Make sure to set this in your .env
 
     async def event_ready(self):
         print(f"Twitch bot logged in as {self.nick}")
 
+        topics = [
+            pubsub.channel_points(self.users_oauth_token)[int(os.getenv("CHANNEL_ID"))]
+        ]
+        await self.pubsub.subscribe_topics(topics)
+
     async def event_message(self, message):
         if message.echo:
             return
-        self.callback(message.author.display_name, f"{message.content}")
+        if message.author.is_mod:
+            self.callback(message.author.display_name, f"{message.content}")
+
+    async def event_pubsub_channel_points(self, event: pubsub.PubSubChannelPointsMessage):
+        print(f"Channel Point Redemption: {event.user.name} redeemed {event.reward.title}!")
+        if event.reward.title == "Use the program":
+            self.callback(event.user.name, f"{event.input}")
+
+
+
+
 
 
 class YouTubeChatHandler:
