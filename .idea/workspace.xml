@@ -4,28 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added a lot more sounds to the program and fixed a couple of bugs in a few of the other programs">
-      <change afterPath="$PROJECT_DIR$/Images/chat.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/aura.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/boatdog.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/eggman.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/gerald.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/homerun.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/mushroom.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/ps5.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/ps52.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/shadow.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/silly.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/soda.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/speed.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Videos/under.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ChatTalks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added a bunch more sounds">
+      <change afterPath="$PROJECT_DIR$/FNF/CarVideo.mp4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FNF/cars-little-song.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/down_arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/down_arrow_color.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/down_arrow_press.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/left_arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/left_arrow_color.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/left_arrow_press.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/right_arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/right_arrow_color.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/right_arrow_press.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/up_arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/up_arrow_color.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/up_arrow_press.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/RhythmGame.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dog.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dog.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GrabChat.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GrabChat.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VoiceRecognition.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/VoiceRecognition.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,31 +51,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Dog.executor&quot;: &quot;Run&quot;,
-    &quot;Python.GrabChat.executor&quot;: &quot;Run&quot;,
-    &quot;Python.PlaySound.executor&quot;: &quot;Run&quot;,
-    &quot;Python.VoiceRecognition.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/pines/PycharmProjects/WordsToSounds/Images&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Dog.executor": "Run",
+    "Python.GrabChat.executor": "Run",
+    "Python.PlaySound.executor": "Run",
+    "Python.VoiceRecognition.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/pines/PycharmProjects/WordsToSounds/src/GrabChat.py",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\src" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Images" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Sounds" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Videos" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Images" />
-      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds" />
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\FNF" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\src" />
-      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Sounds" />
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Videos" />
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="GrabChat" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="WordsToSounds" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\pines\PycharmProjects\WordsToSounds\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/GrabChat.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -200,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1738354722401</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added a bunch more sounds">
+      <created>1741662274147</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1741662274147</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -239,15 +267,26 @@
     <MESSAGE value="Added a groan tube economy" />
     <MESSAGE value="Added hawaii as a sound" />
     <MESSAGE value="Added some more trigger words" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some more trigger words" />
+    <MESSAGE value="Added a bunch more sounds" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a bunch more sounds" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/PlaySound.py</url>
-          <line>543</line>
+          <line>565</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/RhythmGame.py</url>
+          <line>146</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/PlaySound.py</url>
+          <line>491</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
