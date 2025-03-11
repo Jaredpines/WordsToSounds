@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added a bunch more sounds">
-      <change afterPath="$PROJECT_DIR$/FNF/CarVideo.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FNF/cars-little-song.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/down_arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/down_arrow_color.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/down_arrow_press.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/left_arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/left_arrow_color.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/left_arrow_press.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/right_arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/right_arrow_color.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/right_arrow_press.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/up_arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/up_arrow_color.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Images/up_arrow_press.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RhythmGame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GrabChat.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GrabChat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
-    </list>
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added playable car's little song" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -228,7 +209,21 @@
       <option name="project" value="LOCAL" />
       <updated>1741662274147</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Added playable car's little song">
+      <created>1741677995933</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1741677995933</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added playable car's little song">
+      <created>1741678001797</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1741678001797</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -268,7 +263,8 @@
     <MESSAGE value="Added hawaii as a sound" />
     <MESSAGE value="Added some more trigger words" />
     <MESSAGE value="Added a bunch more sounds" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a bunch more sounds" />
+    <MESSAGE value="Added playable car's little song" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added playable car's little song" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
