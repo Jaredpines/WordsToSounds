@@ -38,7 +38,7 @@ class TwitchBot(commands.Bot):
         if message.echo:
             return
         if (message.author.is_mod or message.author.is_vip or message.author.is_subscriber) and not pubsub.PubSubChannelPointsMessage.reward ==  "Use the program":
-            self.callback(message.author.display_name, f"{message.content}")
+            self.callback(message.author, f"{message.content}")
 
     async def event_pubsub_channel_points(self, event: pubsub.PubSubChannelPointsMessage):
         print(f"Channel Point Redemption: {event.user.name} redeemed {event.reward.title}!")

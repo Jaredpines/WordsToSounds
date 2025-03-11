@@ -14,6 +14,7 @@ from src import ChatTalks
 from src.Dog import *
 from src.GamblingLeaderBoard import *
 from src.GroanTubeEconomy import *
+from src.RhythmGame import FNFVisualizer
 from src.VideoAndImage import *
 from src.WalkingPikmin import *
 
@@ -27,6 +28,7 @@ jan = datetime(today.year, 1, 1)
 win = False
 groan = 0
 jeff = 0
+car = None
 
 
 # def translateToEnglish(text):
@@ -58,7 +60,7 @@ jeff = 0
 def playSound(author, message):
     today = datetime.today()
     p = None
-    global players, content, ss, win, groan, videos, jeff, maxPoints, stockPrices
+    global players, content, ss, win, groan, videos, jeff, maxPoints, stockPrices, car
     # message = translateToEnglish(message)
     message = message.lower()
     print(message)
@@ -144,22 +146,22 @@ def playSound(author, message):
 
                 author_found = False
                 for i, line in enumerate(lines):
-                    if author in line and win==True:
+                    if author.displayname in line and win==True:
                         author_found = True
                         # Extract the current win count from the line
                         current_wins = int(line.split(":")[1].split()[0])  # Get the current win count as an integer
                         # Increment the wins by 1
-                        lines[i] = f"{author}: {current_wins + 1} wins\n"  # Update the line with new win count
+                        lines[i] = f"{author.displayname}: {current_wins + 1} wins\n"  # Update the line with new win count
                         break  # Exit the loop once the author is found
-                    elif author in line and win==False:
+                    elif author.displayname in line and win==False:
                         author_found = True
                         current_wins = int(line.split(":")[1].split()[0])
-                        lines[i] = f"{author}: {current_wins} wins\n"
+                        lines[i] = f"{author.displayname}: {current_wins} wins\n"
                 if not author_found and win == True:
                     # If the author is not found, add a new line with 1 win
-                    lines.append(f"{author}: 1 win\n")
+                    lines.append(f"{author.displayname}: 1 win\n")
                 elif not author_found and win == False:
-                    lines.append(f"{author}: 0 wins\n")
+                    lines.append(f"{author.displayname}: 0 wins\n")
 
                 # Go back to the beginning of the file and overwrite the content
                 inoutfile.seek(0)
@@ -508,10 +510,27 @@ def playSound(author, message):
 
     if "kill" in message:
         killAll()
-    if not author == "GameSelectLive" and "gamese39" not in message:
-        #ChatTalks.mode = "talk"
-        ChatTalks.chatTalks(message)
-
+    if car is not None:
+        if car.get_playing() == False:
+            if author != "GameSelectLive":
+                if not author.displayname == "GameSelectLive" and "gamese39" not in message:
+                    #ChatTalks.mode = "talk"
+                    ChatTalks.chatTalks(message)
+                if author.is_mod and "car's little song" in message:
+                    root.after(100, create_car())
+            else:
+                if "cars little song" in message:
+                    root.after(100, create_car())
+    else:
+        if author != "GameSelectLive":
+            if not author.displayname == "GameSelectLive" and "gamese39" not in message:
+                # ChatTalks.mode = "talk"
+                ChatTalks.chatTalks(message)
+            if author.is_mod and "car's little song" in message:
+                root.after(100, create_car())
+        else:
+            if "cars little song" in message:
+                root.after(100, create_car())
 
 root = None
 
@@ -527,6 +546,7 @@ def setupTkinter():
     root.after(100, leaderboard, root)
     root.after(100, groanTubeEconomy, root)
     root.after(100, dog, root)
+
     #root.after(100, ChatTalks.chat, root)
 
 
@@ -536,7 +556,9 @@ def runTkinter():
     setupTkinter()
     root.mainloop()
 
-
+def create_car():
+    global car
+    car = FNFVisualizer(root, '../FNF/cars-little-song.json', "../FNF/CarVideo.mp4")
 
 
 
