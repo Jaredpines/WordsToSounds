@@ -10,8 +10,6 @@ mode = "idle"
 direct = "right"
 def dog(root):
     global images, mode, direct, startX, startY
-    screenWidth = root.winfo_screenwidth()
-    screenHeight = root.winfo_screenheight()
     windowWidth = 150
     windowHeight = 185
 

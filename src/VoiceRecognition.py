@@ -16,7 +16,7 @@
 #                     channels=1,
 #                     rate=16000,
 #                     input=True,
-#                     input_device_index=4,
+#                     input_device_index=1,
 #                     frames_per_buffer=2048)
 #
 #     print("Voice Assistant is listening...")

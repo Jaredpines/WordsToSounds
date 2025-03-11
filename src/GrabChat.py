@@ -17,7 +17,6 @@ nest_asyncio.apply()
 POLLING_INTERVAL = 5
 SCOPES = ["https://www.googleapis.com/auth/youtube.readonly"]
 
-
 # Twitch bot setup
 class TwitchBot(commands.Bot):
     load_dotenv()
@@ -38,7 +37,7 @@ class TwitchBot(commands.Bot):
     async def event_message(self, message):
         if message.echo:
             return
-        if message.author.is_mod:
+        if (message.author.is_mod or message.author.is_vip or message.author.is_subscriber) and not pubsub.PubSubChannelPointsMessage.reward ==  "Use the program":
             self.callback(message.author.display_name, f"{message.content}")
 
     async def event_pubsub_channel_points(self, event: pubsub.PubSubChannelPointsMessage):

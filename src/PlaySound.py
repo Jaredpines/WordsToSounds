@@ -10,6 +10,7 @@ import random
 import cv2
 from ctypes import windll
 
+from src import ChatTalks
 from src.Dog import *
 from src.GamblingLeaderBoard import *
 from src.GroanTubeEconomy import *
@@ -130,7 +131,7 @@ def playSound(author, message):
     if "gambling" in message:
         rand = random.randint(1, 10)
         if 0 < rand < 10:
-            multipleTriggers("../Videos/gamblinglose.mp4", root)
+            multipleTriggers("../Videos/gamblinglose.mp4", root, duration=6)
             win = False
         else:
             multipleTriggers("../Videos/gamblingwin.mp4", root)
@@ -210,7 +211,7 @@ def playSound(author, message):
         p.play()
         multipleTriggers("../Images/onepiece.gif", root, duration=12)
 
-    if "sorry" in message or "sowwy" in message or "gamese39sowwy" in message:
+    if "i'm sorry" in message or "i am sorry" in message or "sowwy" in message or "gamese39sowwy" in message:
         p = vlc.MediaPlayer("../Sounds/sad.mp3")
         p.play()
 
@@ -311,7 +312,7 @@ def playSound(author, message):
         ss -= 1
         multipleTriggers("../Videos/subway.mp4", root)
 
-    if "before" in message:
+    if "these games before" in message:
         multipleTriggers("../Videos/squid.mp4", root)
 
     if "grown tube" in message or "growntube" in message or "groan tube" in message or "groantube" in message or "aaaaaeeeeeuuuuu" in message or "uuuuueeeeeaaaaa" in message:
@@ -372,7 +373,7 @@ def playSound(author, message):
     if "bird up" in message:
         multipleTriggers("../Videos/bird.mp4", root)
 
-    if "boom" in message:
+    if "explode" in message:
         multipleTriggers("../Videos/boom.mp4", root)
 
     if "hawaii" in message:
@@ -389,7 +390,7 @@ def playSound(author, message):
     if "meow" in message:
         multipleTriggers("../Videos/meow.mp4", root)
 
-    if "water" in message:
+    if "getting water" in message:
         multipleTriggers("../Videos/water.mp4", root)
 
     if "snack" in message:
@@ -398,7 +399,7 @@ def playSound(author, message):
     if "mr. beast" in message or "mr beast" in message or "mrbeast" in message:
         multipleTriggers("../Videos/beast.mp4", root)
 
-    if "erb" in message and "leaderboard" not in message:
+    if re.search(rf"\berb\b", message):
         rand = random.randint(1, 6)
         if rand < 6:
             multipleTriggers("../Videos/fakeerb.mp4", root)
@@ -417,17 +418,58 @@ def playSound(author, message):
     if "edwin" in message:
         multipleTriggers("../Videos/edwin.mp4", root)
 
-    if "i am" in message and author == "GameSelectLive":
-        multipleTriggers("../Videos/am.mp4", root)
+    # if "i am" in message and author == "GameSelectLive":
+    #     multipleTriggers("../Videos/am.mp4", root)
 
-    if "david" in message:
-        multipleTriggers("../Videos/david.mp4", root)
+    if "no aura" in message:
+        multipleTriggers("../Videos/aura.mp4", root)
+
+    if "the ps5" in message:
+        multipleTriggers("../Videos/ps5.mp4", root)
+
+    if "stamper missed" in message:
+        multipleTriggers("../Videos/ps52.mp4", root)
+
+    if "what's wrong with the juice" in message or "whats wrong with the juice" in message:
+        multipleTriggers("../Videos/soda.mp4", root)
+
+    if "my name is david" in message:
+        rand = random.randint(1, 2)
+        if rand == 1:
+            multipleTriggers("../Videos/david.mp4", root)
+        elif rand == 2:
+            multipleTriggers("../Videos/under.mp4", root)
+
 
     if "micola" in message:
         multipleTriggers("../Videos/micola.mp4", root)
 
     if "chuck e cheese" in message or "chuck-e-cheese" in message:
         multipleTriggers("../Videos/chuck.mp4", root)
+
+    if "eggman" in message or "egg man" in message:
+        multipleTriggers("../Videos/eggman.mp4", root)
+
+    if "gerald" in message:
+        multipleTriggers("../Videos/gerald.mp4", root)
+
+    if "shadow" in message:
+        multipleTriggers("../Videos/shadow.mp4", root)
+
+    if "mushroom" in message:
+        multipleTriggers("../Videos/mushroom.mp4", root)
+
+    if "speed" in message:
+        multipleTriggers("../Videos/speed.mp4", root)
+
+    if "home run" in message:
+        multipleTriggers("../Videos/homerun.mp4", root)
+
+    if "boat dog" in message:
+        multipleTriggers("../Videos/boatdog.mp4", root)
+
+    if "silly billy" in message:
+        multipleTriggers("../Videos/silly.mp4", root)
 
     if "bogos binted" in message or "bogos vintage" in message or "boat goes binted" in message or "boat goes vintage" in message:
         rand = random.randint(1, 3)
@@ -450,6 +492,8 @@ def playSound(author, message):
     elif "right" in message:
         changeDirection("right", root)
 
+
+
     if "move" in message:
         changeMode("move", root)
 
@@ -462,8 +506,11 @@ def playSound(author, message):
     if "good boy" in message:
         multipleTriggers("../Images/petting.gif", root, duration=4)
 
-    if "kill all" in message:
+    if "kill" in message:
         killAll()
+    if not author == "GameSelectLive" and "gamese39" not in message:
+        #ChatTalks.mode = "talk"
+        ChatTalks.chatTalks(message)
 
 
 root = None
@@ -480,6 +527,7 @@ def setupTkinter():
     root.after(100, leaderboard, root)
     root.after(100, groanTubeEconomy, root)
     root.after(100, dog, root)
+    #root.after(100, ChatTalks.chat, root)
 
 
 def runTkinter():
