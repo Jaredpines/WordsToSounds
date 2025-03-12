@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Made the stock market fit the screen and added a few more sounds">
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added playable car's little song">
+      <change afterPath="$PROJECT_DIR$/Videos/crack.mp4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/WordsToSounds.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WordsToSounds.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChatTalks.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatTalks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/RhythmGame.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/RhythmGame.py" afterDir="false" />
     </list>
@@ -43,45 +45,42 @@
     "Python.Dog.executor": "Run",
     "Python.GrabChat.executor": "Run",
     "Python.PlaySound.executor": "Run",
-    "Python.RhythmGame.executor": "Run",
     "Python.VoiceRecognition.executor": "Run",
-    "Python.info.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/pines/PycharmProjects/WordsToSounds/src/GrabChat.py",
-    "node.js.selected.package.tslint": "(autodetect)",
+    "last_opened_file_path": "C:/Users/pines/PycharmProjects/WordsToSounds/FNF",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\FNF" />
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\src" />
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Images" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Sounds" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Images" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Videos" />
-      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Sounds" />
-      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds" />
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\FNF" />
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\Images" />
       <recent name="C:\Users\pines\PycharmProjects\WordsToSounds\src" />
+      <recent name="C:\Users\pines\PycharmProjects\WordsToSounds" />
     </key>
   </component>
   <component name="RunManager">
     <configuration name="GrabChat" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="WordsToSounds" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12 (WordsToSounds)" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="SDK_HOME" value="C:\Users\pines\PycharmProjects\WordsToSounds\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/GrabChat.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -212,7 +211,28 @@
       <option name="project" value="LOCAL" />
       <updated>1738354722401</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added a bunch more sounds">
+      <created>1741662274147</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1741662274147</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added playable car's little song">
+      <created>1741677995933</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1741677995933</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added playable car's little song">
+      <created>1741678001797</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1741678001797</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -251,22 +271,24 @@
     <MESSAGE value="Added a groan tube economy" />
     <MESSAGE value="Added hawaii as a sound" />
     <MESSAGE value="Added some more trigger words" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some more trigger words" />
+    <MESSAGE value="Added a bunch more sounds" />
+    <MESSAGE value="Added playable car's little song" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added playable car's little song" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/RhythmGame.py</url>
+          <line>167</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/PlaySound.py</url>
-          <line>565</line>
-          <option name="timeStamp" value="2" />
+          <line>491</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/WordsToSounds$PlaySound.coverage" NAME="PlaySound Coverage Results" MODIFIED="1741716207078" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/WordsToSounds$GrabChat.coverage" NAME="GrabChat Coverage Results" MODIFIED="1741724643815" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/WordsToSounds$RhythmGame.coverage" NAME="RhythmGame Coverage Results" MODIFIED="1741744742607" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
   </component>
 </project>

@@ -58,11 +58,21 @@ car = None
 
 
 def playSound(author, message):
+    fnaf = [
+        "five night's at freddy's", "five nights at freddys", "freddy", "animatronic", "foxy", "bonnie", "chica",
+        "baby", "ennard", "springtrap", "afton", "purple guy", "fazbear", "mangle", "puppet", "jj", "rwqfsfasxc",
+        "shadow bb", "xor", "springlock", "fredbear", "phantom bb", "nightmare", "plushtrap", "balloon boy",
+        "nightmarionne", "freddles", "dreadbear", "ballora", "bidybab", "minireena", "bon-bon", "lolbit", "electrobab",
+        "bonnet", "music man", "lefty", "rockstar foxy's parrot", "carnie", "happy frog", "mr. hippo", "pigpatch",
+        "nedd bear", "orville elephant", "mystic hippo", "monty", "montgomery gator", "roxxy", "roxanne wolf", "endo",
+        "the mimic", "tangle", "helpy"
+    ]
     today = datetime.today()
     p = None
     global players, content, ss, win, groan, videos, jeff, maxPoints, stockPrices, car
     # message = translateToEnglish(message)
     message = message.lower()
+    name = author
     print(message)
     if "jeff" in message and jeff > 0:
         killAll()
@@ -174,20 +184,7 @@ def playSound(author, message):
         except Exception as e:
             print(f"An error occurred: {e}")
         leaderboard(root)
-    if "fnaf" in message or "five night's at freddy's" in message or "five nights at freddys" in message \
-            or "freddy" in message or "animatronic" in message or "foxy" in message or "bonnie" in message \
-            or "chica" in message or "baby" in message or "ennard" in message or "springtrap" in message \
-            or "afton" in message or "purple guy" in message or "fazbear" in message or "mangle" in message \
-            or "puppet" in message or "jj" in message or "rwqfsfasxc" in message or "shadow bb" in message \
-            or "xor" in message or "springlock" in message or "fredbear" in message or "phantom bb" in message \
-            or "nightmare" in message or "plushtrap" in message or "balloon boy" in message or "nightmarionne" in message \
-            or "freddles" in message or "dreadbear" in message or "ballora" in message or "bidybab" in message \
-            or "minireena" in message or "bon-bon" in message or "lolbit" in message or "electrobab" in message \
-            or "bonnet" in message or "music man" in message or "lefty" in message or "rockstar foxy's parrot" in message \
-            or "carnie" in message or "happy frog" in message or "mr. hippo" in message or "pigpatch" in message \
-            or "nedd bear" in message or "orville elephant" in message or "mystic hippo" in message \
-            or "monty" in message or "montgomery gator" in message or "roxxy" in message or "roxanne wolf" in message \
-            or "endo" in message or "the mimic" in message or "tangle" in message or "helpy" in message:
+    if message in fnaf:
         rand = random.randint(1, 9)
         if rand == 1:
             multipleTriggers("../Videos/fnaf1.mp4", root)
@@ -473,6 +470,9 @@ def playSound(author, message):
     if "silly billy" in message:
         multipleTriggers("../Videos/silly.mp4", root)
 
+    if "crack" in message:
+        multipleTriggers("../Videos/crack.mp4", root)
+
     if "bogos binted" in message or "bogos vintage" in message or "boat goes binted" in message or "boat goes vintage" in message:
         rand = random.randint(1, 3)
         if rand == 1:
@@ -512,25 +512,24 @@ def playSound(author, message):
         killAll()
     if car is not None:
         if car.get_playing() == False:
-            if type(author) == type("") and author != "GameSelectLive":
-                if not author.displayname == "GameSelectLive" and "gamese39" not in message:
-                    #ChatTalks.mode = "talk"
-                    ChatTalks.chatTalks(message)
+            if name is not "GameSelectLive" and "gamese39" not in message:
+                #ChatTalks.mode = "talk"
+                ChatTalks.chatTalks(message)
+            try:
                 if author.is_mod and "car's little song" in message:
                     root.after(100, create_car())
-            else:
-                if "cars little song" in message:
-                    root.after(100, create_car())
+            except:
+                pass
     else:
-        if type(author) == type("") and author != "GameSelectLive":
-            if not author.displayname == "GameSelectLive" and "gamese39" not in message:
-                # ChatTalks.mode = "talk"
-                ChatTalks.chatTalks(message)
+        if name is not "GameSelectLive" and  "gamese39" not in message:
+            # ChatTalks.mode = "talk"
+            ChatTalks.chatTalks(message)
+        try:
             if author.is_mod and "car's little song" in message:
                 root.after(100, create_car())
-        else:
-            if "cars little song" in message:
-                root.after(100, create_car())
+        except:
+            pass
+
 
 root = None
 

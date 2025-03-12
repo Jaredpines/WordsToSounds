@@ -228,7 +228,7 @@ class FNFVisualizer:
         # Start playback
         player.play()
 
-        time.sleep(0.01)
+        time.sleep(0.025)
 
         # Get the video duration in seconds
         videoDuration = player.get_length() / 1000  # VLC gives duration in milliseconds
