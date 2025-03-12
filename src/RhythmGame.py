@@ -69,14 +69,35 @@ class FNFVisualizer:
         # Resize images and store references to them
         self.arrow_images_press = {key: img.resize((self.arrow_size * 4, self.arrow_size * 4)) for key, img in
                              self.arrow_images_press.items()}
+
+        self.arrow_images_hold = {
+            0: Image.open("../Images/left_arrow_hold.png").transpose(Image.FLIP_TOP_BOTTOM),
+            1: Image.open("../Images/down_arrow_hold.png").transpose(Image.FLIP_TOP_BOTTOM),
+            2: Image.open("../Images/up_arrow_hold.png").transpose(Image.FLIP_TOP_BOTTOM),
+            3: Image.open("../Images/right_arrow_hold.png").transpose(Image.FLIP_TOP_BOTTOM)
+        }
+        # Resize images and store references to them
+        self.arrow_images_hold = {key: img.resize((self.arrow_size * 4, self.arrow_size * 4)) for key, img in
+                                  self.arrow_images_hold.items()}
+
+        self.arrow_images_hold_end = {
+            0: Image.open("../Images/left_arrow_hold_end.png").transpose(Image.FLIP_TOP_BOTTOM),
+            1: Image.open("../Images/down_arrow_hold_end.png").transpose(Image.FLIP_TOP_BOTTOM),
+            2: Image.open("../Images/up_arrow_hold_end.png").transpose(Image.FLIP_TOP_BOTTOM),
+            3: Image.open("../Images/right_arrow_hold_end.png").transpose(Image.FLIP_TOP_BOTTOM)
+        }
         self.image_refs_start = {}
         self.image_refs = {}
         self.draw_hit_indicators()
 
     def draw_arrow(self, x, y, lane, start=None):
         """Replace the arrow with an image."""
-        if start is not None:
+        if start == "start":
             image = self.arrow_images_start[lane]  # Use the start image
+        elif start == "hold":
+            image = self.arrow_images_hold[lane]  # Use the hold image
+        elif start == "hold_end":
+            image = self.arrow_images_hold[lane]  # Use the hold end piece image
         else:
             image = self.arrow_images[lane]  # Use the colored image
 
@@ -228,4 +249,6 @@ class FNFVisualizer:
         return self.playing
 
 
-
+# root = tk.Tk()
+# app = FNFVisualizer(root, '../FNF/cars-little-song.json', '../FNF/CarVideo.mp4')
+# root.mainloop()

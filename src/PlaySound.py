@@ -512,7 +512,7 @@ def playSound(author, message):
         killAll()
     if car is not None:
         if car.get_playing() == False:
-            if author != "GameSelectLive":
+            if type(author) == type("") and author != "GameSelectLive":
                 if not author.displayname == "GameSelectLive" and "gamese39" not in message:
                     #ChatTalks.mode = "talk"
                     ChatTalks.chatTalks(message)
@@ -522,7 +522,7 @@ def playSound(author, message):
                 if "cars little song" in message:
                     root.after(100, create_car())
     else:
-        if author != "GameSelectLive":
+        if type(author) == type("") and author != "GameSelectLive":
             if not author.displayname == "GameSelectLive" and "gamese39" not in message:
                 # ChatTalks.mode = "talk"
                 ChatTalks.chatTalks(message)
