@@ -65,7 +65,7 @@ def playSound(author, message):
         "nightmarionne", "freddles", "dreadbear", "ballora", "bidybab", "minireena", "bon-bon", "lolbit", "electrobab",
         "bonnet", "music man", "lefty", "rockstar foxy's parrot", "carnie", "happy frog", "mr. hippo", "pigpatch",
         "nedd bear", "orville elephant", "mystic hippo", "monty", "montgomery gator", "roxxy", "roxanne wolf", "endo",
-        "the mimic", "tangle", "helpy"
+        "the mimic", "tangle", "helpy", "fnaf", "animatronics"
     ]
     today = datetime.today()
     p = None
@@ -184,7 +184,7 @@ def playSound(author, message):
         except Exception as e:
             print(f"An error occurred: {e}")
         leaderboard(root)
-    if message in fnaf:
+    if any(f in message for f in fnaf):
         rand = random.randint(1, 9)
         if rand == 1:
             multipleTriggers("../Videos/fnaf1.mp4", root)
@@ -203,7 +203,7 @@ def playSound(author, message):
         elif rand == 8:
             multipleTriggers("../Videos/fnafj.mp4", root)
         elif rand == 9:
-            multipleTriggers("../Videos/fivebooms.mp4", root)
+            multipleTriggers("../Videos/fnaffivebooms.mp4", root)
 
     if "one piece" in message or "onepiece" in message:
         p = vlc.MediaPlayer("../Sounds/onepiece.mp3")
@@ -472,6 +472,9 @@ def playSound(author, message):
 
     if "crack" in message:
         multipleTriggers("../Videos/crack.mp4", root)
+
+    if "alan awake" in message:
+        multipleTriggers("../Videos/alan.mp4", root)
 
     if "bogos binted" in message or "bogos vintage" in message or "boat goes binted" in message or "boat goes vintage" in message:
         rand = random.randint(1, 3)

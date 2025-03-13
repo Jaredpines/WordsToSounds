@@ -105,16 +105,18 @@ def flashVideo(videoPath, duration=None):
     cap.release()
 
     # Scale video dimensions to fit within maxWidth and maxHeight
-    scale = min(640 / videoWidth, 360 / videoHeight)  # default max size 640x360
+    scale = min(1000 / videoWidth, 1000 / videoHeight)  # default max size 640x360
     scaledWidth = int(videoWidth * scale)
     scaledHeight = int(videoHeight * scale)
 
     # Random position on the screen
     screenWidth = root.winfo_screenwidth()
     screenHeight = root.winfo_screenheight()
-    xPos = random.randint(0, screenWidth - scaledWidth)
-    yPos = random.randint(0, screenHeight - scaledHeight)
-    if "subway" in videoPath:
+    xPos = random.randint(0, abs(screenWidth - scaledWidth))
+    yPos = random.randint(0, abs(screenHeight - scaledHeight))
+    if "fnaf" in videoPath:
+        scaledWidth = 2560
+        scaledHeight = 1440
         xPos = 0
         yPos = 0
     # Create a canvas for the video

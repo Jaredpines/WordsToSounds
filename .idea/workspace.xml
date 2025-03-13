@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Added playable car's little song">
-      <change afterPath="$PROJECT_DIR$/Videos/crack.mp4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/WordsToSounds.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WordsToSounds.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0a532e99-96e8-4b18-b48f-9e6bc4752281" name="Changes" comment="Fixed some bugs with voice and author.">
+      <change afterPath="$PROJECT_DIR$/Videos/alan.mp4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Videos/fivebooms.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/Videos/fnaffivebooms.mp4" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChatTalks.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChatTalks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlaySound.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlaySound.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RhythmGame.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/RhythmGame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/VideoAndImage.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/VideoAndImage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1741678001797</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Fixed some bugs with voice and author.">
+      <created>1741763148660</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1741763148660</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -273,7 +279,8 @@
     <MESSAGE value="Added some more trigger words" />
     <MESSAGE value="Added a bunch more sounds" />
     <MESSAGE value="Added playable car's little song" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added playable car's little song" />
+    <MESSAGE value="Fixed some bugs with voice and author." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed some bugs with voice and author." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -285,7 +292,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/src/PlaySound.py</url>
-          <line>491</line>
+          <line>494</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
