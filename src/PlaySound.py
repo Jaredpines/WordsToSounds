@@ -408,6 +408,9 @@ def playSound(author, message):
     if "buzzer" in message:
         multipleTriggers("../Videos/buzzer.mp4", root)
 
+    if "correct" in message:
+        multipleTriggers("../Videos/correct.mp4", root)
+
     if "creature" in message:
         multipleTriggers("../Videos/creature.mp4", root)
 
@@ -517,7 +520,8 @@ def playSound(author, message):
         if car.get_playing() == False:
             if name is not "GameSelectLive" and "gamese39" not in message:
                 #ChatTalks.mode = "talk"
-                ChatTalks.chatTalks(message)
+                name =  "From " + author.display_name + " " + message
+                ChatTalks.chatTalks(name)
             try:
                 if author.is_mod and "car's little song" in message:
                     root.after(100, create_car())
@@ -526,7 +530,8 @@ def playSound(author, message):
     else:
         if name is not "GameSelectLive" and  "gamese39" not in message:
             # ChatTalks.mode = "talk"
-            ChatTalks.chatTalks(message)
+            name =  "From " + author.display_name + " " + message
+            ChatTalks.chatTalks(name)
         try:
             if author.is_mod and "car's little song" in message:
                 root.after(100, create_car())

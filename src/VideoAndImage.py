@@ -109,6 +109,9 @@ def flashVideo(videoPath, duration=None):
     scaledWidth = int(videoWidth * scale)
     scaledHeight = int(videoHeight * scale)
 
+    # scaledWidth = 100
+    # scaledHeight = 100
+
     # Random position on the screen
     screenWidth = root.winfo_screenwidth()
     screenHeight = root.winfo_screenheight()
