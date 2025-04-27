@@ -35,6 +35,12 @@ def flashImage(imagePath, duration=3, flip=False):
         desiredWidth = 150
         desiredHeight = 200
 
+    if "bonk" in imagePath:
+        xPos = 300
+        yPos = root.winfo_screenheight() - imageHeight - 300
+        desiredWidth = 300
+        desiredHeight = 300
+
 
     if flip == False:
         label.place(x=xPos, y=yPos)
@@ -46,7 +52,7 @@ def flashImage(imagePath, duration=3, flip=False):
         frames = []
         try:
             while True:
-                if "petting" in imagePath:
+                if "petting" in imagePath or "bonk" in imagePath:
                     frames.append(ImageTk.PhotoImage(image.copy().resize((desiredWidth, desiredHeight)), master=root))
                 else:
                     frames.append(ImageTk.PhotoImage(image.copy(), master=root))
@@ -61,7 +67,10 @@ def flashImage(imagePath, duration=3, flip=False):
                     label.config(image=frames[index])
                     label.image = frames[index]  # Keep a reference to avoid garbage collection
                     if index + 1 < len(frames):
-                        root.after(100, updateFrame, index + 1)
+                        if "bonk" in imagePath:
+                            root.after(50, updateFrame, index + 1)
+                        else:
+                            root.after(100, updateFrame, index + 1)
                     else:
                         root.after(100, updateFrame, 0)
                 except tk.TclError:
@@ -103,6 +112,7 @@ def flashVideo(videoPath, duration=None):
     videoWidth = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     videoHeight = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     cap.release()
+
 
     # Scale video dimensions to fit within maxWidth and maxHeight
     scale = min(1000 / videoWidth, 1000 / videoHeight)  # default max size 640x360

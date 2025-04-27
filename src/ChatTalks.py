@@ -1,18 +1,18 @@
-#import pyttsx3
+import pyttsx3
 from ctypes import windll
 import tkinter as tk
 from PIL import Image, ImageTk
-import torch
-import sounddevice as sd
-from TTS.api import TTS
-from TTS.tts.configs.xtts_config import XttsConfig
-from TTS.tts.models.xtts import XttsAudioConfig, XttsArgs
-from TTS.config.shared_configs import BaseDatasetConfig
-torch.serialization.add_safe_globals([XttsConfig, XttsAudioConfig, BaseDatasetConfig, XttsArgs])
-device = "cuda" if torch.cuda.is_available() else "cpu"
-model_path = "tts_models/multilingual/multi-dataset/xtts_v2"
+# import torch
+# import sounddevice as sd
+# from TTS.api import TTS
+# from TTS.tts.configs.xtts_config import XttsConfig
+# from TTS.tts.models.xtts import XttsAudioConfig, XttsArgs
+# from TTS.config.shared_configs import BaseDatasetConfig
+# torch.serialization.add_safe_globals([XttsConfig, XttsAudioConfig, BaseDatasetConfig, XttsArgs])
+# device = "cuda" if torch.cuda.is_available() else "cpu"
+# model_path = "tts_models/multilingual/multi-dataset/xtts_v2"
 #model_path = "tts_models/de/thorsten/tacotron2-DDC"
-tts = TTS(model_path).to(device)
+# tts = TTS(model_path).to(device)
 # def Load():
 #     global tts
 #     tts = TTS(model_name="tts_models/en/ljspeech/tacotron2-DDC")
@@ -26,31 +26,31 @@ mode = "idle"
 # HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_JA-JP_HARUKA_11.0
 
 def chatTalks(message):
-    # global mode
-    # engine = pyttsx3.init()
+    global mode
+    engine = pyttsx3.init()
+
+
+    engine.setProperty('rate', 150)
+    engine.setProperty('volume', 0.8)
+    engine.setProperty('voice', "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_JA-JP_HARUKA_11.0")
+
+    engine.say(message)
+
+    engine.runAndWait()
+
+
+    # sentence = message
     #
+    # speaker = "../Model/peter/peter.wav"  # Replace with the actual speaker name or ID
     #
-    # engine.setProperty('rate', 150)
-    # engine.setProperty('volume', 0.8)
-    # engine.setProperty('voice', "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0`")
+    # audio = tts.tts(text=sentence, speaker_wav=speaker, language="es")
     #
-    # engine.say(message)
+    # # Play the audio
+    # sample_rate = 22050  # Check model documentation for correct rate
+    # sd.play(audio, samplerate=sample_rate)
+    # sd.wait()  # Wait until audio has finished playing
     #
-    # engine.runAndWait()
-
-
-    sentence = message
-
-    speaker = "../Model/peter/peter.wav"  # Replace with the actual speaker name or ID
-
-    audio = tts.tts(text=sentence, speaker_wav=speaker, language="es")
-
-    # Play the audio
-    sample_rate = 22050  # Check model documentation for correct rate
-    sd.play(audio, samplerate=sample_rate)
-    sd.wait()  # Wait until audio has finished playing
-
-    print("Speech played.")
+    # print("Speech played.")
 
 
 

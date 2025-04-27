@@ -350,6 +350,9 @@ def playSound(author, message):
     if "some of this on your that" in message:
         multipleTriggers("../Videos/rett.mp4", root)
 
+    if "chicken jockey" in message:
+        multipleTriggers("../Videos/chicken jockey.mp4", root)
+
     if "peanut butter and jelly the long way" in message:
         multipleTriggers("../Videos/peanutbutter.mp4", root)
 
@@ -385,6 +388,12 @@ def playSound(author, message):
 
     if "our table" in message:
         multipleTriggers("../Videos/table.mp4", root)
+
+    if "as a child" in message:
+        multipleTriggers("../Videos/as a child.mp4", root)
+
+    if "flint and steel" in message:
+        multipleTriggers("../Videos/flint and steel.mp4", root)
 
     if "meow" in message:
         multipleTriggers("../Videos/meow.mp4", root)
@@ -461,8 +470,8 @@ def playSound(author, message):
     if "mushroom" in message:
         multipleTriggers("../Videos/mushroom.mp4", root)
 
-    if "speed" in message:
-        multipleTriggers("../Videos/speed.mp4", root)
+    # if "speed" in message:
+    #     multipleTriggers("../Videos/speed.mp4", root)
 
     if "home run" in message:
         multipleTriggers("../Videos/homerun.mp4", root)
@@ -473,11 +482,16 @@ def playSound(author, message):
     if "silly billy" in message:
         multipleTriggers("../Videos/silly.mp4", root)
 
-    if "crack" in message:
-        multipleTriggers("../Videos/crack.mp4", root)
+    #if "crack" in message:
+        #multipleTriggers("../Videos/crack.mp4", root)
 
     if "alan awake" in message:
         multipleTriggers("../Videos/alan.mp4", root)
+
+    if "bonk" in message:
+        b = vlc.MediaPlayer("../Sounds/bonk.mp3")
+        multipleTriggers("../Images/bonk.gif", root, duration=1.25)
+        b.play()
 
     if "bogos binted" in message or "bogos vintage" in message or "boat goes binted" in message or "boat goes vintage" in message:
         rand = random.randint(1, 3)
